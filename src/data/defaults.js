@@ -1,165 +1,302 @@
-﻿export const defaults = {
-  meta: {
-    name: "Alex Morgan",
-    title: "Data Scientist & ML Engineer",
-    roles: ["Data Scientist", "ML Engineer", "AI Researcher", "Deep Learning Practitioner"],
-    tagline: "I build intelligent systems that turn complex data into decisions that matter.",
-    email: "alex@example.com",
-    location: "San Francisco, CA",
-    avatar: "",
-    resumeUrl: "",
-    socials: {
-      github:   "https://github.com/",
-      linkedin: "https://linkedin.com/in/",
-      twitter:  "https://twitter.com/",
-      kaggle:   "https://kaggle.com/",
+export const defaults = {
+  "meta": {
+    "name": "Wathsara Kalhara",
+    "title": "Data Scientist & ML Engineer",
+    "roles": [
+      "Data Scientist",
+      "ML Engineer",
+      "AI Researcher",
+      "Deep Learning Practitioner"
+    ],
+    "tagline": "I build intelligent systems that turn complex data into decisions that matter.",
+    "email": "wathsarakalharas@gmail.com",
+    "location": "",
+    "avatar": "",
+    "resumeUrl": "",
+    "socials": {
+      "github": "https://github.com/wathsara02",
+      "linkedin": "https://linkedin.com/in/wathsara",
+      "twitter": "",
+      "kaggle": ""
     }
   },
-  stats: [
-    { label: "Years Experience", value: 6 },
-    { label: "Models Deployed", value: 34 },
-    { label: "Projects Completed", value: 50 },
-    { label: "Papers Read This Year", value: 120 },
+  "stats": [
+    {
+      "label": "Years Experience",
+      "value": 3
+    },
+    {
+      "label": "Models Deployed",
+      "value": 14
+    },
+    {
+      "label": "Projects Completed",
+      "value": 9
+    }
   ],
-  about: {
-    bio: "I'm a Data Scientist and ML Engineer with 6 years of experience building end-to-end machine learning systems — from exploratory analysis and model development to production deployment and monitoring. I specialize in NLP and computer vision, with a strong focus on making models that are not just accurate, but interpretable, scalable, and maintainable.\n\nI care deeply about the full lifecycle: understanding the problem, cleaning the data, shipping the model, and measuring real-world impact.",
+  "about": {
+    "bio": "I'm a Data Scientist and ML Engineer with 6 years of experience building end-to-end machine learning systems — from exploratory analysis and model development to production deployment and monitoring. I specialize in Reinforcement Learning and computer vision, with a strong focus on making models that are not just accurate, but interpretable, scalable, and maintainable.\n\nI care deeply about the full lifecycle: understanding the problem, cleaning the data, shipping the model, and measuring real-world impact."
   },
-  skills: [
-    { category: "Languages", items: ["Python", "R", "SQL", "Bash", "Julia"] },
-    { category: "ML / Deep Learning", items: ["PyTorch", "TensorFlow", "Keras", "scikit-learn", "XGBoost", "LightGBM", "HuggingFace Transformers", "LangChain"] },
-    { category: "MLOps & Infra", items: ["MLflow", "DVC", "Docker", "Kubernetes", "Airflow", "Prefect", "FastAPI", "Ray"] },
-    { category: "Cloud", items: ["AWS SageMaker", "GCP Vertex AI", "Azure ML", "Lambda", "S3", "EC2"] },
-    { category: "Data Engineering", items: ["Pandas", "PySpark", "dbt", "BigQuery", "Snowflake", "Kafka", "Redshift"] },
-    { category: "Visualization & BI", items: ["Matplotlib", "Seaborn", "Plotly", "Streamlit", "Gradio", "Tableau"] },
+  "skills": [
+    {
+      "category": "Languages",
+      "items": [
+        "Python",
+        "R",
+        "SQL",
+        "Bash",
+        "Julia"
+      ]
+    },
+    {
+      "category": "ML / Deep Learning",
+      "items": [
+        "PyTorch",
+        "TensorFlow",
+        "Keras",
+        "scikit-learn",
+        "XGBoost",
+        "LightGBM",
+        "HuggingFace Transformers",
+        "LangChain"
+      ]
+    },
+    {
+      "category": "MLOps & Infra",
+      "items": [
+        "MLflow",
+        "DVC",
+        "Docker",
+        "Kubernetes",
+        "Airflow",
+        "Prefect",
+        "FastAPI",
+        "Ray"
+      ]
+    },
+    {
+      "category": "Cloud",
+      "items": [
+        "AWS SageMaker",
+        "GCP Vertex AI",
+        "Azure ML",
+        "Lambda",
+        "S3",
+        "EC2"
+      ]
+    },
+    {
+      "category": "Data Engineering",
+      "items": [
+        "Pandas",
+        "PySpark",
+        "dbt",
+        "BigQuery",
+        "Snowflake",
+        "Kafka",
+        "Redshift"
+      ]
+    },
+    {
+      "category": "Visualization & BI",
+      "items": [
+        "Matplotlib",
+        "Seaborn",
+        "Plotly",
+        "Streamlit",
+        "Gradio",
+        "Tableau"
+      ]
+    }
   ],
-  projects: [
+  "projects": [
     {
-      id: 1,
-      title: "LLM-Powered Document Intelligence",
-      description: "Built a retrieval-augmented generation (RAG) pipeline to extract structured insights from unstructured legal documents. Reduced analyst review time by 68% in production.",
-      tags: ["LangChain", "OpenAI", "FAISS", "FastAPI", "Docker"],
-      githubUrl: "",
-      liveUrl: "",
-      image: "",
-      featured: true,
-      wide: true,
+      "id": 1,
+      "title": "LLM-Powered Document Intelligence",
+      "description": "Built a retrieval-augmented generation (RAG) pipeline to extract structured insights from unstructured legal documents. Reduced analyst review time by 68% in production.",
+      "tags": [
+        "LangChain",
+        "OpenAI",
+        "FAISS",
+        "FastAPI",
+        "Docker"
+      ],
+      "githubUrl": "",
+      "liveUrl": "",
+      "image": "",
+      "featured": true,
+      "wide": true
     },
     {
-      id: 2,
-      title: "Real-Time Fraud Detection System",
-      description: "Designed and deployed a gradient-boosted ensemble model with sub-50ms inference latency. Integrated with Kafka for streaming data and served via a custom FastAPI microservice.",
-      tags: ["XGBoost", "Kafka", "FastAPI", "AWS", "MLflow"],
-      githubUrl: "",
-      liveUrl: "",
-      image: "",
-      featured: true,
-      wide: false,
+      "id": 2,
+      "title": "Real-Time Fraud Detection System",
+      "description": "Designed and deployed a gradient-boosted ensemble model with sub-50ms inference latency. Integrated with Kafka for streaming data and served via a custom FastAPI microservice.",
+      "tags": [
+        "XGBoost",
+        "Kafka",
+        "FastAPI",
+        "AWS",
+        "MLflow"
+      ],
+      "githubUrl": "",
+      "liveUrl": "",
+      "image": "",
+      "featured": true,
+      "wide": false
     },
     {
-      id: 3,
-      title: "Medical Image Segmentation",
-      description: "Implemented a U-Net variant for multi-class segmentation of MRI scans. Achieved 0.91 Dice coefficient on the validation set, outperforming the clinical baseline by 12%.",
-      tags: ["PyTorch", "MONAI", "OpenCV", "Weights & Biases"],
-      githubUrl: "",
-      liveUrl: "",
-      image: "",
-      featured: true,
-      wide: false,
+      "id": 3,
+      "title": "Medical Image Segmentation",
+      "description": "Implemented a U-Net variant for multi-class segmentation of MRI scans. Achieved 0.91 Dice coefficient on the validation set, outperforming the clinical baseline by 12%.",
+      "tags": [
+        "PyTorch",
+        "MONAI",
+        "OpenCV",
+        "Weights & Biases"
+      ],
+      "githubUrl": "",
+      "liveUrl": "",
+      "image": "",
+      "featured": true,
+      "wide": false
     },
     {
-      id: 4,
-      title: "Customer Churn Prediction Platform",
-      description: "End-to-end ML platform including feature store, model registry, automated retraining pipeline, and a Streamlit dashboard for business stakeholders.",
-      tags: ["scikit-learn", "Airflow", "MLflow", "Streamlit", "PostgreSQL"],
-      githubUrl: "",
-      liveUrl: "",
-      image: "",
-      featured: false,
-      wide: false,
+      "id": 4,
+      "title": "Customer Churn Prediction Platform",
+      "description": "End-to-end ML platform including feature store, model registry, automated retraining pipeline, and a Streamlit dashboard for business stakeholders.",
+      "tags": [
+        "scikit-learn",
+        "Airflow",
+        "MLflow",
+        "Streamlit",
+        "PostgreSQL"
+      ],
+      "githubUrl": "",
+      "liveUrl": "",
+      "image": "",
+      "featured": false,
+      "wide": false
     },
     {
-      id: 5,
-      title: "Multilingual Sentiment Analysis API",
-      description: "Fine-tuned a multilingual BERT model on domain-specific customer feedback data across 8 languages. Packaged as a containerized REST API with auto-scaling on GCP.",
-      tags: ["HuggingFace", "BERT", "GCP", "Docker", "Kubernetes"],
-      githubUrl: "",
-      liveUrl: "",
-      image: "",
-      featured: false,
-      wide: false,
-    },
+      "id": 5,
+      "title": "Multilingual Sentiment Analysis API",
+      "description": "Fine-tuned a multilingual BERT model on domain-specific customer feedback data across 8 languages. Packaged as a containerized REST API with auto-scaling on GCP.",
+      "tags": [
+        "HuggingFace",
+        "BERT",
+        "GCP",
+        "Docker",
+        "Kubernetes"
+      ],
+      "githubUrl": "",
+      "liveUrl": "",
+      "image": "",
+      "featured": false,
+      "wide": false
+    }
   ],
-  experience: [
+  "experience": [
     {
-      id: 1,
-      role: "Senior Data Scientist",
-      company: "Acme AI",
-      period: "Jan 2022 — Present",
-      location: "San Francisco, CA",
-      description: "Lead ML development for the company's core recommendation and fraud detection systems. Own the full lifecycle from problem framing to production monitoring.",
-      highlights: [
+      "id": 1,
+      "role": "Senior Data Scientist",
+      "company": "Acme AI",
+      "period": "Jan 2022 — Present",
+      "location": "San Francisco, CA",
+      "description": "Lead ML development for the company's core recommendation and fraud detection systems. Own the full lifecycle from problem framing to production monitoring.",
+      "highlights": [
         "Reduced fraud losses by $2.4M annually by replacing rule-based system with an ML ensemble",
         "Built an internal feature store serving 15+ models in production",
-        "Mentored 3 junior data scientists and established team coding standards",
+        "Mentored 3 junior data scientists and established team coding standards"
       ]
     },
     {
-      id: 2,
-      role: "Data Scientist",
-      company: "DataWorks Inc.",
-      period: "Jun 2019 — Dec 2021",
-      location: "New York, NY",
-      description: "Worked across NLP and forecasting projects for enterprise clients in finance and healthcare.",
-      highlights: [
+      "id": 2,
+      "role": "Data Scientist",
+      "company": "DataWorks Inc.",
+      "period": "Jun 2019 — Dec 2021",
+      "location": "New York, NY",
+      "description": "Worked across NLP and forecasting projects for enterprise clients in finance and healthcare.",
+      "highlights": [
         "Delivered an NLP pipeline that extracted entities from 500K+ financial documents per day",
         "Built demand forecasting models that improved inventory planning accuracy by 22%",
-        "Collaborated with engineering to deploy 6 models to production using Docker + AWS",
+        "Collaborated with engineering to deploy 6 models to production using Docker + AWS"
       ]
     },
     {
-      id: 3,
-      role: "Data Analyst",
-      company: "Insight Analytics",
-      period: "Aug 2017 — May 2019",
-      location: "Boston, MA",
-      description: "Performed exploratory analysis, built dashboards, and developed early-stage predictive models for marketing and operations teams.",
-      highlights: [
+      "id": 3,
+      "role": "Data Analyst",
+      "company": "Insight Analytics",
+      "period": "Aug 2017 — May 2019",
+      "location": "Boston, MA",
+      "description": "Performed exploratory analysis, built dashboards, and developed early-stage predictive models for marketing and operations teams.",
+      "highlights": [
         "Automated weekly reporting pipelines, saving 12 hours of manual work per week",
-        "Built a customer segmentation model used by the marketing team for 2+ years",
+        "Built a customer segmentation model used by the marketing team for 2+ years"
       ]
-    },
+    }
   ],
-  education: [
+  "education": [
     {
-      id: 1,
-      degree: "M.Sc. in Machine Learning",
-      institution: "Carnegie Mellon University",
-      period: "2015 — 2017",
-      location: "Pittsburgh, PA",
-      description: "Thesis: 'Attention Mechanisms for Multi-Label Text Classification in Low-Resource Settings'. GPA: 3.92/4.0.",
+      "id": 1,
+      "degree": "M.Sc. in Machine Learning",
+      "institution": "Carnegie Mellon University",
+      "period": "2015 — 2017",
+      "location": "Pittsburgh, PA",
+      "description": "Thesis: 'Attention Mechanisms for Multi-Label Text Classification in Low-Resource Settings'. GPA: 3.92/4.0."
     },
     {
-      id: 2,
-      degree: "B.Sc. in Computer Science",
-      institution: "University of Michigan",
-      period: "2011 — 2015",
-      location: "Ann Arbor, MI",
-      description: "Minor in Statistics. Dean's List all semesters.",
+      "id": 2,
+      "degree": "B.Sc. in Computer Science",
+      "institution": "University of Michigan",
+      "period": "2011 — 2015",
+      "location": "Ann Arbor, MI",
+      "description": "Minor in Statistics. Dean's List all semesters."
+    }
+  ],
+  "interests": [
+    {
+      "icon": "🧠",
+      "title": "Large Language Models",
+      "description": "RAG pipelines, fine-tuning, and prompt engineering at scale — making LLMs reliable in production."
     },
+    {
+      "icon": "👁️",
+      "title": "Computer Vision",
+      "description": "Segmentation, detection, medical imaging — teaching machines to see what matters."
+    },
+    {
+      "icon": "⚙️",
+      "title": "MLOps & Systems",
+      "description": "Feature stores, model registries, drift monitoring — making models survive the real world."
+    },
+    {
+      "icon": "🔍",
+      "title": "Interpretability",
+      "description": "SHAP, LIME, causal inference — building models that humans can actually trust and audit."
+    },
+    {
+      "icon": "📡",
+      "title": "Streaming & Real-Time ML",
+      "description": "Kafka, Flink, sub-100ms inference — ML at the speed of events."
+    },
+    {
+      "icon": "🧬",
+      "title": "Biomedical AI",
+      "description": "Applying deep learning to genomics, pathology slides, and clinical decision support."
+    },
+    {
+      "icon": "📚",
+      "title": "Research & Papers",
+      "description": "Reading 2–3 papers a week. Currently obsessed with mechanistic interpretability and sparse autoencoders."
+    },
+    {
+      "icon": "🌐",
+      "title": "Open Source",
+      "description": "Contributing to the tools that the community depends on — and building small utilities no one asked for."
+    }
   ],
-  interests: [
-    { icon: "🧠", title: "Large Language Models", description: "RAG pipelines, fine-tuning, and prompt engineering at scale — making LLMs reliable in production." },
-    { icon: "👁️", title: "Computer Vision", description: "Segmentation, detection, medical imaging — teaching machines to see what matters." },
-    { icon: "⚙️", title: "MLOps & Systems", description: "Feature stores, model registries, drift monitoring — making models survive the real world." },
-    { icon: "🔍", title: "Interpretability", description: "SHAP, LIME, causal inference — building models that humans can actually trust and audit." },
-    { icon: "📡", title: "Streaming & Real-Time ML", description: "Kafka, Flink, sub-100ms inference — ML at the speed of events." },
-    { icon: "🧬", title: "Biomedical AI", description: "Applying deep learning to genomics, pathology slides, and clinical decision support." },
-    { icon: "📚", title: "Research & Papers", description: "Reading 2–3 papers a week. Currently obsessed with mechanistic interpretability and sparse autoencoders." },
-    { icon: "🌐", title: "Open Source", description: "Contributing to the tools that the community depends on — and building small utilities no one asked for." },
-  ],
-  contact: {
-    heading: "Let's build something intelligent.",
-    subtext: "Open to senior IC roles, research collaborations, and consulting engagements. Response time: under 24 hours.",
+  "contact": {
+    "heading": "Let's build something intelligent.",
+    "subtext": "Open to senior IC roles, research collaborations, and consulting engagements. Response time: under 24 hours."
   }
 }
-
