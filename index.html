@@ -8,6 +8,14 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script>
+      (function() {
+        var p = window.location.search.match(/[?&]p=([^&]+)/);
+        if (p) {
+          window.history.replaceState(null, null, decodeURIComponent(p[1]) + window.location.search.replace(/[?&]p=[^&]+/, '').replace(/^&/, '?') + window.location.hash);
+        }
+      })();
+    </script>
     <script type="module" crossorigin src="/assets/index-BMZR213a.js"></script>
     <link rel="modulepreload" crossorigin href="/assets/usePortfolioData-JMJ36YW9.js">
     <link rel="stylesheet" crossorigin href="/assets/index-Ca2YePMn.css">
@@ -16,5 +24,3 @@
     <div id="root"></div>
   </body>
 </html>
-
-
