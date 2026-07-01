@@ -211,19 +211,19 @@ export const defaults = {
   "education": [
     {
       "id": 1,
-      "degree": "M.Sc. in Machine Learning",
-      "institution": "Carnegie Mellon University",
-      "period": "2015 — 2017",
+      "degree": "BSC (HONS) IN DATA SCIENCE",
+      "institution": "University of Plymouth, UK",
+      "period": "2023-2026",
       "location": "Pittsburgh, PA",
-      "description": "Thesis: 'Attention Mechanisms for Multi-Label Text Classification in Low-Resource Settings'. GPA: 3.92/4.0."
+      "description": "Coursework covered statistical modelling, machine learning, data mining, database management, and big data analytics, with a final year research project focused on Reinforcement Learning."
     },
     {
       "id": 2,
-      "degree": "B.Sc. in Computer Science",
-      "institution": "University of Michigan",
-      "period": "2011 — 2015",
-      "location": "Ann Arbor, MI",
-      "description": "Minor in Statistics. Dean's List all semesters."
+      "degree": "GCE A/L",
+      "institution": "Dharmapala Vidyalaya",
+      "period": "2019-2022",
+      "location": "Pannipitiya",
+      "description": "Physical Science Stream\n3-s Passes"
     }
   ],
   "interests": [
