@@ -1,6 +1,5 @@
 ﻿import { useRef, useState } from "react"
 import { motion, useInView, useReducedMotion } from "framer-motion"
-import { SectionHeading } from "@/components/ui/SectionHeading"
 import { usePortfolioData } from "@/hooks/usePortfolioData"
 import { SKILL_ICONS } from "@/data/skillIcons"
 
@@ -24,17 +23,15 @@ function opacityFromWeight(w) {
   return 0.35 + w * 0.65
 }
 
-function SkillWord({ label, color, weight, index, inView, hovered, onHover, onLeave, reduced }) {
+function SkillWord({ label, color, weight, index, inView, hovered, onHover, onLeave }) {
   const { fontSize, fontWeight } = sizeFromWeight(weight)
   const baseOpacity = opacityFromWeight(weight)
 
-  /* directional entrance based on position */
   const dir = index % 3
   const hiddenX = dir === 0 ? -28 : dir === 2 ? 12 : 0
   const hiddenY = dir === 1 ? 24 : 0
   const delay   = (1 - weight) * 0.35
 
-  /* spotlight dimming */
   const spotOpacity = hovered === null
     ? baseOpacity
     : hovered === label ? 1 : baseOpacity * 0.25
@@ -49,7 +46,7 @@ function SkillWord({ label, color, weight, index, inView, hovered, onHover, onLe
             opacity: spotOpacity,
             x: 0, y: 0,
             filter: "blur(0px)",
-            color: isHovered ? color : "#FAFAFA",
+            color: color,
             scale: isHovered ? 1.08 : 1,
           }
         : { opacity: 0, x: hiddenX, y: hiddenY, filter: "blur(6px)" }
@@ -69,7 +66,6 @@ function SkillWord({ label, color, weight, index, inView, hovered, onHover, onLe
       title={label}
     >
       {label}
-      {/* underline sweep */}
       <motion.span
         className="absolute left-0 bottom-0 h-[2px] bg-accent w-full pointer-events-none"
         initial={{ scaleX: 0 }}
@@ -85,7 +81,6 @@ export function Skills() {
   const { portfolioData } = usePortfolioData()
   const ref     = useRef(null)
   const inView  = useInView(ref, { once: false, margin: "-80px" })
-  const reduced = useReducedMotion()
   const [hovered, setHovered] = useState(null)
 
   const weightedSkills = portfolioData.skills.flatMap((cat, ci) =>
@@ -99,7 +94,12 @@ export function Skills() {
   return (
     <section id="skills" className="py-32 md:py-40 bg-base overflow-hidden">
       <div className="max-w-7xl mx-auto px-8">
-        <SectionHeading title="Skills" subtitle="Technologies I build with every day" />
+        <div className="mb-12">
+          <p className="font-mono text-xs text-accent uppercase tracking-[0.2em] mb-4">✦ Stack</p>
+          <h2 className="font-display font-extrabold text-5xl md:text-7xl text-primary uppercase leading-none">
+            Technologies I<br />Work With Everyday
+          </h2>
+        </div>
 
         <div ref={ref} className="mt-16 flex flex-wrap gap-x-6 gap-y-3 items-baseline">
           {weightedSkills.map(({ label, color, weight }, i) => (
@@ -113,7 +113,6 @@ export function Skills() {
               hovered={hovered}
               onHover={setHovered}
               onLeave={() => setHovered(null)}
-              reduced={reduced}
             />
           ))}
         </div>

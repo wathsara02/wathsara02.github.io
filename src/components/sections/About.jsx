@@ -41,7 +41,7 @@ export function About() {
 
       <div className="relative z-10 max-w-7xl mx-auto px-8">
 
-        {/* stats — sharp 2px border, no radius */}
+        {/* stats */}
         <div className="grid grid-cols-2 md:grid-cols-4 border-2 border-border mb-20">
           {stats.map((s, i) => (
             <motion.div
@@ -59,7 +59,7 @@ export function About() {
 
         <div className="grid lg:grid-cols-5 gap-16 items-start">
 
-          {/* avatar — sharp corners */}
+          {/* avatar */}
           <div ref={avatarRef} className="lg:col-span-2">
             <motion.div
               initial={{ opacity: 0, x: -48 }}
@@ -79,15 +79,10 @@ export function About() {
                       </div>
                     )
                   }
-                  <div className="absolute inset-0 bg-gradient-to-t from-bg/70 via-transparent to-transparent" />
-                  <div className="absolute bottom-6 left-6">
-                    <p className="font-display font-extrabold text-2xl text-primary">{meta.name}</p>
-                    <p className="font-mono text-sm text-accent mt-1 uppercase tracking-widest">{meta.title}</p>
-                  </div>
                 </div>
               </AvatarParallax>
 
-              {/* status badge — sharp */}
+              {/* status badge */}
               <motion.div
                 animate={{ y: [0, -10, 0] }}
                 transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
@@ -131,4 +126,3 @@ export function About() {
     </section>
   )
 }
-

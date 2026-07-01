@@ -1,5 +1,5 @@
-﻿import { useState, useRef, useEffect, useCallback } from "react"
-import { motion, AnimatePresence } from "framer-motion"
+﻿import { useState, useRef } from "react"
+import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion"
 import { usePortfolioData } from "@/hooks/usePortfolioData"
 import { SKILL_ICONS } from "@/data/skillIcons"
 
@@ -45,104 +45,92 @@ export function SkillsIcons() {
   const cats = portfolioData.skills ?? []
   const [openIndex, setOpenIndex] = useState(0)
 
-  /* one ref per row header */
-  const headerRefs = useRef([])
+  const containerRef = useRef(null)
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end end"],
+  })
 
-  const onScroll = useCallback(() => {
-    const trigger = window.innerHeight * 0.35 // 35% from top of viewport
-
-    let best = 0
-    let bestDist = Infinity
-
-    headerRefs.current.forEach((el, i) => {
-      if (!el) return
-      const rect = el.getBoundingClientRect()
-      const mid = rect.top + rect.height / 2
-      const dist = Math.abs(mid - trigger)
-      if (dist < bestDist) {
-        bestDist = dist
-        best = i
-      }
-    })
-
-    setOpenIndex(best)
-  }, [])
-
-  useEffect(() => {
-    window.addEventListener("scroll", onScroll, { passive: true })
-    onScroll() // run once on mount
-    return () => window.removeEventListener("scroll", onScroll)
-  }, [onScroll])
+  useMotionValueEvent(scrollYProgress, "change", (v) => {
+    const snapped = Math.round(v * (cats.length - 1))
+    setOpenIndex(Math.min(Math.max(snapped, 0), cats.length - 1))
+  })
 
   return (
-    <section id="skills-icons" className="border-t-2 border-border">
-      <div className="max-w-7xl mx-auto px-8 py-10 flex items-center justify-between">
-        <p className="font-mono text-xs text-accent uppercase tracking-[0.2em]">✦ Tech Stack</p>
-        <p className="font-mono text-xs text-faint uppercase tracking-widest hidden md:block">
-          Scroll to explore
-        </p>
-      </div>
+    <section ref={containerRef} id="skills-icons" style={{ height: `${cats.length * 100}vh` }}>
+      <div className="sticky top-0 h-screen overflow-hidden flex flex-col">
 
-      <div className="max-w-7xl mx-auto px-8 pb-20">
-        <div className="border-t-2 border-border">
-          {cats.map((cat, i) => {
-            const isOpen = openIndex === i
+        {/* heading */}
+        <div className="shrink-0 pt-28 pb-6 max-w-7xl mx-auto w-full px-8 flex items-end justify-between">
+          <div>
+            <p className="font-mono text-xs text-accent uppercase tracking-[0.2em] mb-4">✦ Tech Stack</p>
+            <h2 className="font-display font-extrabold text-5xl md:text-7xl text-primary uppercase leading-none">
+              Technologies I<br />Work With Everyday
+            </h2>
+          </div>
+          <p className="font-mono text-xs text-faint uppercase tracking-widest hidden md:block pb-2">
+            Scroll to explore
+          </p>
+        </div>
 
-            return (
-              <div key={cat.category} className="border-b-2 border-border">
-                {/* header — ref stored for scroll tracking */}
-                <div
-                  ref={el => { headerRefs.current[i] = el }}
-                  className="relative flex items-center gap-8 px-8 py-6 overflow-hidden"
-                >
-                  <motion.div
-                    className="absolute inset-0 bg-accent"
-                    initial={{ scaleX: 0 }}
-                    animate={{ scaleX: isOpen ? 1 : 0 }}
-                    transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-                    style={{ originX: 0 }}
-                  />
-                  <span
-                    className="relative z-10 font-mono text-sm tracking-widest w-8 shrink-0 transition-colors duration-200"
-                    style={{ color: isOpen ? "#09090B60" : "#52525B" }}
-                  >
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <span
-                    className="relative z-10 font-display font-extrabold text-3xl md:text-5xl uppercase tracking-tight flex-1 leading-none transition-colors duration-200"
-                    style={{ color: isOpen ? "#09090B" : "#FAFAFA" }}
-                  >
-                    {cat.category}
-                  </span>
-                  <span
-                    className="relative z-10 font-mono text-sm tracking-widest hidden md:block transition-colors duration-200"
-                    style={{ color: isOpen ? "#09090B60" : "#52525B" }}
-                  >
-                    {cat.items.length} tools
-                  </span>
-                </div>
-
-                {/* expandable pills */}
-                <AnimatePresence>
-                  {isOpen && (
+        {/* accordion */}
+        <div className="flex-1 overflow-hidden max-w-7xl mx-auto w-full px-8 pb-8">
+          <div className="border-t-2 border-border h-full overflow-hidden flex flex-col">
+            {cats.map((cat, i) => {
+              const isOpen = openIndex === i
+              return (
+                <div key={cat.category} className="border-b-2 border-border flex-shrink-0">
+                  {/* header */}
+                  <div className="relative flex items-center gap-8 px-8 py-5 overflow-hidden">
                     <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                      className="overflow-hidden"
+                      className="absolute inset-0 bg-accent"
+                      initial={{ scaleX: 0 }}
+                      animate={{ scaleX: isOpen ? 1 : 0 }}
+                      transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                      style={{ originX: 0 }}
+                    />
+                    <span
+                      className="relative z-10 font-mono text-sm tracking-widest w-8 shrink-0 transition-colors duration-200"
+                      style={{ color: isOpen ? "#09090B60" : "#52525B" }}
                     >
-                      <div className="px-8 py-6 flex flex-wrap gap-3 border-t-2 border-border bg-surface2">
-                        {cat.items.map((label, pi) => (
-                          <IconPill key={label} label={label} index={pi} />
-                        ))}
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-            )
-          })}
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <span
+                      className="relative z-10 font-display font-extrabold text-2xl md:text-4xl uppercase tracking-tight flex-1 leading-none transition-colors duration-200"
+                      style={{ color: isOpen ? "#09090B" : "#FAFAFA" }}
+                    >
+                      {cat.category}
+                    </span>
+                    <span
+                      className="relative z-10 font-mono text-sm tracking-widest hidden md:block transition-colors duration-200"
+                      style={{ color: isOpen ? "#09090B60" : "#52525B" }}
+                    >
+                      {cat.items.length} tools
+                    </span>
+                  </div>
+
+                  {/* expandable pills */}
+                  <AnimatePresence>
+                    {isOpen && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                        className="overflow-hidden"
+                      >
+                        <div className="px-8 py-4 flex flex-wrap gap-3 border-t-2 border-border bg-surface2">
+                          {cat.items.map((label, pi) => (
+                            <IconPill key={label} label={label} index={pi} />
+                          ))}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              )
+            })}
+          </div>
         </div>
       </div>
     </section>

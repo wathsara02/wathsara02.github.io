@@ -1,4 +1,4 @@
-export const defaults = {
+﻿export const defaults = {
   "meta": {
     "name": "Wathsara Kalhara",
     "title": "Data Scientist & ML Engineer",
@@ -21,178 +21,61 @@ export const defaults = {
     }
   },
   "stats": [
-    {
-      "label": "Years Experience",
-      "value": 3
-    },
-    {
-      "label": "Models Deployed",
-      "value": 14
-    },
-    {
-      "label": "Projects Completed",
-      "value": 9
-    }
+    { "label": "Years Experience", "value": 3 },
+    { "label": "Models Deployed",  "value": 14 },
+    { "label": "Projects Completed", "value": 9 }
   ],
   "about": {
     "bio": "I'm a Data Scientist and ML Engineer with 6 years of experience building end-to-end machine learning systems — from exploratory analysis and model development to production deployment and monitoring. I specialize in Reinforcement Learning and computer vision, with a strong focus on making models that are not just accurate, but interpretable, scalable, and maintainable.\n\nI care deeply about the full lifecycle: understanding the problem, cleaning the data, shipping the model, and measuring real-world impact."
   },
   "skills": [
-    {
-      "category": "Languages",
-      "items": [
-        "Python",
-        "R",
-        "SQL",
-        "Bash",
-        "Julia"
-      ]
-    },
-    {
-      "category": "ML / Deep Learning",
-      "items": [
-        "PyTorch",
-        "TensorFlow",
-        "Keras",
-        "scikit-learn",
-        "XGBoost",
-        "LightGBM",
-        "HuggingFace Transformers",
-        "LangChain"
-      ]
-    },
-    {
-      "category": "MLOps & Infra",
-      "items": [
-        "MLflow",
-        "DVC",
-        "Docker",
-        "Kubernetes",
-        "Airflow",
-        "Prefect",
-        "FastAPI",
-        "Ray"
-      ]
-    },
-    {
-      "category": "Cloud",
-      "items": [
-        "AWS SageMaker",
-        "GCP Vertex AI",
-        "Azure ML",
-        "Lambda",
-        "S3",
-        "EC2"
-      ]
-    },
-    {
-      "category": "Data Engineering",
-      "items": [
-        "Pandas",
-        "PySpark",
-        "dbt",
-        "BigQuery",
-        "Snowflake",
-        "Kafka",
-        "Redshift"
-      ]
-    },
-    {
-      "category": "Visualization & BI",
-      "items": [
-        "Matplotlib",
-        "Seaborn",
-        "Plotly",
-        "Streamlit",
-        "Gradio",
-        "Tableau"
-      ]
-    }
+    { "category": "Languages",       "items": ["Python","R","SQL","Bash","Julia"] },
+    { "category": "ML / Deep Learning", "items": ["PyTorch","TensorFlow","Keras","scikit-learn","XGBoost","LightGBM","HuggingFace Transformers","LangChain"] },
+    { "category": "MLOps & Infra",   "items": ["MLflow","DVC","Docker","Kubernetes","Airflow","Prefect","FastAPI","Ray"] },
+    { "category": "Cloud",           "items": ["AWS SageMaker","GCP Vertex AI","Azure ML","Lambda","S3","EC2"] },
+    { "category": "Data Engineering","items": ["Pandas","PySpark","dbt","BigQuery","Snowflake","Kafka","Redshift"] },
+    { "category": "Visualization & BI", "items": ["Matplotlib","Seaborn","Plotly","Streamlit","Gradio","Tableau"] }
   ],
   "projects": [
     {
       "id": 1,
       "title": "LLM-Powered Document Intelligence",
       "description": "Built a retrieval-augmented generation (RAG) pipeline to extract structured insights from unstructured legal documents. Reduced analyst review time by 68% in production.",
-      "tags": [
-        "LangChain",
-        "OpenAI",
-        "FAISS",
-        "FastAPI",
-        "Docker"
-      ],
-      "githubUrl": "",
-      "liveUrl": "",
-      "image": "",
-      "featured": true,
-      "wide": true
+      "tags": ["LangChain","OpenAI","FAISS","FastAPI","Docker"],
+      "githubUrl": "", "liveUrl": "", "image": "",
+      "featured": true, "wide": true
     },
     {
       "id": 2,
       "title": "Real-Time Fraud Detection System",
       "description": "Designed and deployed a gradient-boosted ensemble model with sub-50ms inference latency. Integrated with Kafka for streaming data and served via a custom FastAPI microservice.",
-      "tags": [
-        "XGBoost",
-        "Kafka",
-        "FastAPI",
-        "AWS",
-        "MLflow"
-      ],
-      "githubUrl": "",
-      "liveUrl": "",
-      "image": "",
-      "featured": true,
-      "wide": false
+      "tags": ["XGBoost","Kafka","FastAPI","AWS","MLflow"],
+      "githubUrl": "", "liveUrl": "", "image": "",
+      "featured": true, "wide": false
     },
     {
       "id": 3,
       "title": "Medical Image Segmentation",
       "description": "Implemented a U-Net variant for multi-class segmentation of MRI scans. Achieved 0.91 Dice coefficient on the validation set, outperforming the clinical baseline by 12%.",
-      "tags": [
-        "PyTorch",
-        "MONAI",
-        "OpenCV",
-        "Weights & Biases"
-      ],
-      "githubUrl": "",
-      "liveUrl": "",
-      "image": "",
-      "featured": true,
-      "wide": false
+      "tags": ["PyTorch","MONAI","OpenCV","Weights & Biases"],
+      "githubUrl": "", "liveUrl": "", "image": "",
+      "featured": true, "wide": false
     },
     {
       "id": 4,
       "title": "Customer Churn Prediction Platform",
       "description": "End-to-end ML platform including feature store, model registry, automated retraining pipeline, and a Streamlit dashboard for business stakeholders.",
-      "tags": [
-        "scikit-learn",
-        "Airflow",
-        "MLflow",
-        "Streamlit",
-        "PostgreSQL"
-      ],
-      "githubUrl": "",
-      "liveUrl": "",
-      "image": "",
-      "featured": false,
-      "wide": false
+      "tags": ["scikit-learn","Airflow","MLflow","Streamlit","PostgreSQL"],
+      "githubUrl": "", "liveUrl": "", "image": "",
+      "featured": false, "wide": false
     },
     {
       "id": 5,
       "title": "Multilingual Sentiment Analysis API",
       "description": "Fine-tuned a multilingual BERT model on domain-specific customer feedback data across 8 languages. Packaged as a containerized REST API with auto-scaling on GCP.",
-      "tags": [
-        "HuggingFace",
-        "BERT",
-        "GCP",
-        "Docker",
-        "Kubernetes"
-      ],
-      "githubUrl": "",
-      "liveUrl": "",
-      "image": "",
-      "featured": false,
-      "wide": false
+      "tags": ["HuggingFace","BERT","GCP","Docker","Kubernetes"],
+      "githubUrl": "", "liveUrl": "", "image": "",
+      "featured": false, "wide": false
     }
   ],
   "experience": [
@@ -200,12 +83,15 @@ export const defaults = {
       "id": 1,
       "role": "Analyst Programmer",
       "company": "Lanka Electricity Company",
+      "startMonth": "March",
+      "startYear": "2026",
+      "endMonth": "",
+      "endYear": "",
+      "current": true,
       "period": "March 2026 — Present",
       "location": "Kollupitiya, Colombo 03",
       "description": "Contributing to web application development while assisting the Systems Analyst team with SQL/Python scripting, query optimization, and process automation.",
-      "highlights": [
-        "Developed Process Cost management system"
-      ]
+      "highlights": ["Developed Process Cost management system"]
     }
   ],
   "education": [
@@ -213,7 +99,12 @@ export const defaults = {
       "id": 1,
       "degree": "BSC (HONS) IN DATA SCIENCE",
       "institution": "University of Plymouth, UK",
-      "period": "2023-2026",
+      "startMonth": "",
+      "startYear": "2023",
+      "endMonth": "",
+      "endYear": "2026",
+      "current": false,
+      "period": "2023 — 2026",
       "location": "Pittsburgh, PA",
       "description": "Coursework covered statistical modelling, machine learning, data mining, database management, and big data analytics, with a final year research project focused on Reinforcement Learning."
     },
@@ -221,52 +112,25 @@ export const defaults = {
       "id": 2,
       "degree": "GCE A/L",
       "institution": "Dharmapala Vidyalaya",
-      "period": "2019-2022",
+      "startMonth": "",
+      "startYear": "2019",
+      "endMonth": "",
+      "endYear": "2022",
+      "current": false,
+      "period": "2019 — 2022",
       "location": "Pannipitiya",
       "description": "Physical Science Stream\n3-s Passes"
     }
   ],
   "interests": [
-    {
-      "icon": "🧠",
-      "title": "Large Language Models",
-      "description": "RAG pipelines, fine-tuning, and prompt engineering at scale — making LLMs reliable in production."
-    },
-    {
-      "icon": "👁️",
-      "title": "Computer Vision",
-      "description": "Segmentation, detection, medical imaging — teaching machines to see what matters."
-    },
-    {
-      "icon": "⚙️",
-      "title": "MLOps & Systems",
-      "description": "Feature stores, model registries, drift monitoring — making models survive the real world."
-    },
-    {
-      "icon": "🔍",
-      "title": "Interpretability",
-      "description": "SHAP, LIME, causal inference — building models that humans can actually trust and audit."
-    },
-    {
-      "icon": "📡",
-      "title": "Streaming & Real-Time ML",
-      "description": "Kafka, Flink, sub-100ms inference — ML at the speed of events."
-    },
-    {
-      "icon": "🧬",
-      "title": "Biomedical AI",
-      "description": "Applying deep learning to genomics, pathology slides, and clinical decision support."
-    },
-    {
-      "icon": "📚",
-      "title": "Research & Papers",
-      "description": "Reading 2–3 papers a week. Currently obsessed with mechanistic interpretability and sparse autoencoders."
-    },
-    {
-      "icon": "🌐",
-      "title": "Open Source",
-      "description": "Contributing to the tools that the community depends on — and building small utilities no one asked for."
-    }
+    { "icon": "🧠", "title": "Large Language Models",    "description": "RAG pipelines, fine-tuning, and prompt engineering at scale — making LLMs reliable in production." },
+    { "icon": "👁️", "title": "Computer Vision",           "description": "Segmentation, detection, medical imaging — teaching machines to see what matters." },
+    { "icon": "⚙️", "title": "MLOps & Systems",           "description": "Feature stores, model registries, drift monitoring — making models survive the real world." },
+    { "icon": "🔍", "title": "Interpretability",           "description": "SHAP, LIME, causal inference — building models that humans can actually trust and audit." },
+    { "icon": "📡", "title": "Streaming & Real-Time ML",  "description": "Kafka, Flink, sub-100ms inference — ML at the speed of events." },
+    { "icon": "🧬", "title": "Biomedical AI",             "description": "Applying deep learning to genomics, pathology slides, and clinical decision support." },
+    { "icon": "📚", "title": "Research & Papers",         "description": "Reading 2–3 papers a week. Currently obsessed with mechanistic interpretability and sparse autoencoders." },
+    { "icon": "🌐", "title": "Open Source",               "description": "Contributing to the tools that the community depends on — and building small utilities no one asked for." }
   ],
   "contact": {
     "heading": "Let's build something intelligent.",

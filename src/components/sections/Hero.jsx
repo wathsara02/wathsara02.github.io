@@ -126,7 +126,6 @@ export function Hero() {
               animate="visible"
             >
               {[
-                { label: "Based in",        value: meta.location, mono: false },
                 { label: "Specialising in", value: meta.title,    mono: false },
                 { label: "Contact",         value: meta.email,    mono: true  },
               ].map(({ label, value, mono }) => (

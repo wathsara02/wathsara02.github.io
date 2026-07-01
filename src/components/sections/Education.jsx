@@ -4,11 +4,19 @@ import { SectionHeading } from "@/components/ui/SectionHeading"
 import { TimelineItem } from "@/components/ui/TimelineItem"
 import { usePortfolioData } from "@/hooks/usePortfolioData"
 
+function parseYear(item) {
+  if (item.startYear) return parseInt(item.startYear) || 0
+  const match = item.period?.match(/\d{4}/)
+  return match ? parseInt(match[0]) : 0
+}
+
 export function Education() {
   const { portfolioData } = usePortfolioData()
   const ref = useRef(null)
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start 0.8","end 0.3"] })
   const scaleY = useTransform(scrollYProgress, [0,1], [0,1])
+
+  const sorted = [...(portfolioData.education ?? [])].sort((a, b) => parseYear(b) - parseYear(a))
 
   return (
     <section id="education" className="py-32 md:py-40">
@@ -18,7 +26,7 @@ export function Education() {
           <motion.div style={{ scaleY, transformOrigin:"top" }}
             className="absolute left-1.5 top-0 bottom-0 w-[2px] bg-gradient-to-b from-accent/50 via-accent/20 to-transparent origin-top" />
           <div className="space-y-7">
-            {portfolioData.education.map((item, i) => (
+            {sorted.map((item, i) => (
               <TimelineItem key={item.id} item={item} variant="education" index={i} />
             ))}
           </div>

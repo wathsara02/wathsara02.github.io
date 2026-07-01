@@ -1,6 +1,6 @@
 ﻿import { useRef } from "react"
 import { motion, useMotionValue, useTransform, useSpring } from "framer-motion"
-import { Link2, ExternalLink, ArrowUpRight } from "lucide-react"
+import { Link2, ExternalLink } from "lucide-react"
 
 export function ProjectCard({ project, wide = false, index = 0 }) {
   const hasImage = !!project.image
@@ -86,13 +86,33 @@ export function ProjectCard({ project, wide = false, index = 0 }) {
                 </span>
               )}
             </div>
-            <motion.div
-              whileHover={{ rotate: 45 }}
-              transition={{ duration: 0.2 }}
-              className="w-9 h-9 border-2 border-border flex items-center justify-center text-faint
-                group-hover:border-accent group-hover:text-accent transition-all shrink-0">
-              <ArrowUpRight size={16} />
-            </motion.div>
+            {/* Live / GitHub buttons — only shown if link exists */}
+            <div className="flex gap-2 shrink-0">
+              {project.liveUrl && (
+                <a
+                  href={project.liveUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={e => e.stopPropagation()}
+                  className="flex items-center gap-1.5 border-2 border-border px-3 py-1.5 font-mono text-xs text-faint
+                    hover:text-accent hover:border-accent transition-colors duration-150"
+                >
+                  <ExternalLink size={11} /> Live
+                </a>
+              )}
+              {project.githubUrl && (
+                <a
+                  href={project.githubUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={e => e.stopPropagation()}
+                  className="flex items-center gap-1.5 border-2 border-border px-3 py-1.5 font-mono text-xs text-faint
+                    hover:text-accent hover:border-accent transition-colors duration-150"
+                >
+                  <Link2 size={11} /> Code
+                </a>
+              )}
+            </div>
           </div>
 
           <h3 className="font-display font-bold text-title text-primary group-hover:text-accent transition-colors">
@@ -120,24 +140,8 @@ export function ProjectCard({ project, wide = false, index = 0 }) {
               </motion.span>
             ))}
           </motion.div>
-
-          <div className="flex gap-5 pt-3 border-t-2 border-border">
-            {project.githubUrl && (
-              <a href={project.githubUrl} target="_blank" rel="noopener noreferrer"
-                className="flex items-center gap-1.5 font-ui text-sm text-faint hover:text-accent transition-colors">
-                <Link2 size={13} /> Source
-              </a>
-            )}
-            {project.liveUrl && (
-              <a href={project.liveUrl} target="_blank" rel="noopener noreferrer"
-                className="flex items-center gap-1.5 font-ui text-sm text-faint hover:text-accent transition-colors">
-                <ExternalLink size={13} /> Live Demo
-              </a>
-            )}
-          </div>
         </div>
       </motion.div>
     </div>
   )
 }
-

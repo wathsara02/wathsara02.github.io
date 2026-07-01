@@ -65,8 +65,11 @@ export function Interests() {
     target: containerRef,
     offset: ["start start", "end end"],
   })
-  const smooth      = useSpring(scrollYProgress, { stiffness: 80, damping: 20, mass: 0.5 })
-  const activeIndex = useTransform(smooth, [0, 1], [0, interests.length - 1])
+
+  // Snap to nearest integer index, then spring toward it
+  const rawIndex    = useTransform(scrollYProgress, [0, 1], [0, interests.length - 1])
+  const snappedIndex = useTransform(rawIndex, v => Math.round(v))
+  const activeIndex = useSpring(snappedIndex, { stiffness: 300, damping: 30, mass: 0.5 })
 
   return (
     <section ref={containerRef} style={{ height: `${interests.length * 100}vh` }}>
