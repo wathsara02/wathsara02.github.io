@@ -270,6 +270,6 @@ export const defaults = {
   ],
   "contact": {
     "heading": "Let's build something intelligent.",
-    "subtext": "Open to senior IC roles, research collaborations, and consulting engagements. Response time: under 24 hours."
+    "subtext": "Open to Data scientist, ML Engineering, Loop Engineering Roles. Response time: under 24 hours."
   }
 }
