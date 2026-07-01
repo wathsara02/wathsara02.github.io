@@ -198,40 +198,13 @@ export const defaults = {
   "experience": [
     {
       "id": 1,
-      "role": "Senior Data Scientist",
-      "company": "Acme AI",
-      "period": "Jan 2022 — Present",
-      "location": "San Francisco, CA",
-      "description": "Lead ML development for the company's core recommendation and fraud detection systems. Own the full lifecycle from problem framing to production monitoring.",
+      "role": "Analyst Programmer",
+      "company": "Lanka Electricity Company",
+      "period": "March 2026 — Present",
+      "location": "Kollupitiya, Colombo 03",
+      "description": "Contributing to web application development while assisting the Systems Analyst team with SQL/Python scripting, query optimization, and process automation.",
       "highlights": [
-        "Reduced fraud losses by $2.4M annually by replacing rule-based system with an ML ensemble",
-        "Built an internal feature store serving 15+ models in production",
-        "Mentored 3 junior data scientists and established team coding standards"
-      ]
-    },
-    {
-      "id": 2,
-      "role": "Data Scientist",
-      "company": "DataWorks Inc.",
-      "period": "Jun 2019 — Dec 2021",
-      "location": "New York, NY",
-      "description": "Worked across NLP and forecasting projects for enterprise clients in finance and healthcare.",
-      "highlights": [
-        "Delivered an NLP pipeline that extracted entities from 500K+ financial documents per day",
-        "Built demand forecasting models that improved inventory planning accuracy by 22%",
-        "Collaborated with engineering to deploy 6 models to production using Docker + AWS"
-      ]
-    },
-    {
-      "id": 3,
-      "role": "Data Analyst",
-      "company": "Insight Analytics",
-      "period": "Aug 2017 — May 2019",
-      "location": "Boston, MA",
-      "description": "Performed exploratory analysis, built dashboards, and developed early-stage predictive models for marketing and operations teams.",
-      "highlights": [
-        "Automated weekly reporting pipelines, saving 12 hours of manual work per week",
-        "Built a customer segmentation model used by the marketing team for 2+ years"
+        "Developed Process Cost management system"
       ]
     }
   ],
