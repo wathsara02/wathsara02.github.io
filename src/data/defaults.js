@@ -11,7 +11,7 @@ export const defaults = {
     "tagline": "I build intelligent systems that turn complex data into decisions that matter.",
     "email": "wathsarakalharas@gmail.com",
     "location": "",
-    "avatar": "",
+    "avatar": "/about.png",
     "resumeUrl": "",
     "socials": {
       "github": "https://github.com/wathsara02",
