@@ -107,50 +107,55 @@ export const defaults = {
   "projects": [
     {
       "id": 1,
-      "title": "LLM-Powered Document Intelligence",
-      "description": "Built a retrieval-augmented generation (RAG) pipeline to extract structured insights from unstructured legal documents. Reduced analyst review time by 68% in production.",
+      "title": "Intelligent Omi",
+      "description": "Designed and trained a MAPPO (Multi-Agent PPO) reinforcement learning agent from scratch in a custom Gymnasium environment to play Omi, achieving a ~59% win rate against a random baseline over 2 million training episodes (195-dimension observation space, 36-action space). Deployed the trained PyTorch policy behind a FastAPI backend with WebSocket-based real-time inference, paired with a React 19 + TypeScript frontend where users can play live against the AI.",
       "tags": [
-        "LangChain",
-        "OpenAI",
-        "FAISS",
+        "PyTorch",
+        "PettingZoo",
+        "Gymnasium",
+        "MAPPO",
         "FastAPI",
-        "Docker"
+        "Websockets",
+        "React",
+        "TypeScript"
       ],
-      "githubUrl": "",
-      "liveUrl": "",
+      "githubUrl": "https://github.com/wathsara02/PUSL3190",
+      "liveUrl": "https://omilk.vercel.app/",
       "image": "",
       "featured": true,
       "wide": true
     },
     {
       "id": 2,
-      "title": "Real-Time Fraud Detection System",
-      "description": "Designed and deployed a gradient-boosted ensemble model with sub-50ms inference latency. Integrated with Kafka for streaming data and served via a custom FastAPI microservice.",
+      "title": "Niffler - COC game Automation",
+      "description": "Built a full-stack automation platform for Clash of Clans consisting of a Python/tkinter desktop bot and a React web app. The bot uses OpenCV/Tesseract OCR to read on-screen loot values and Pyautogui to automate attack cycles, troop deployment, and wall upgrades on BlueStacks. A shared Firebase Realtime Database powers device-bound license validation, real-time stat syncing, and a public leaderboard, while the React/Vite website handles downloads, free trials, and Google AdSense monetization.",
       "tags": [
-        "XGBoost",
-        "Kafka",
-        "FastAPI",
-        "AWS",
-        "MLflow"
+        "Python",
+        "Tkinter",
+        "OpenCV",
+        "Tesseract OCR",
+        "React",
+        "Firebase"
       ],
       "githubUrl": "",
-      "liveUrl": "",
+      "liveUrl": "https://vercel.com/wathsara02s-projects/coc",
       "image": "",
       "featured": true,
       "wide": false
     },
     {
       "id": 3,
-      "title": "Medical Image Segmentation",
-      "description": "Implemented a U-Net variant for multi-class segmentation of MRI scans. Achieved 0.91 Dice coefficient on the validation set, outperforming the clinical baseline by 12%.",
+      "title": "Roomora",
+      "description": "Built the interactive 3D layer of Roomora, an HCI/Computer Graphics coursework project that lets users design room layouts on a 2D grid and seamlessly transition into a real-time, WebGL-rendered 3D space. Implemented direct in-scene object manipulation (drag-and-drop repositioning via TransformControls), procedural furniture rendering, and smart wall culling using React Three Fiber, with Zustand managing state sync between the 2D and 3D views.",
       "tags": [
-        "PyTorch",
-        "MONAI",
-        "OpenCV",
-        "Weights & Biases"
+        "React",
+        "TypeScript",
+        "Three.js",
+        "Zustand",
+        "TailwindCSS"
       ],
-      "githubUrl": "",
-      "liveUrl": "",
+      "githubUrl": "https://github.com/wathsara02/Roomora",
+      "liveUrl": "https://roomora-kappa.vercel.app/pre-made-rooms",
       "image": "",
       "featured": true,
       "wide": false
