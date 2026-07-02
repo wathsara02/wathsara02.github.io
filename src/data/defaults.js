@@ -43,9 +43,7 @@ export const defaults = {
       "items": [
         "Python",
         "R",
-        "SQL",
-        "Bash",
-        "Julia"
+        "SQL"
       ]
     },
     {
@@ -56,16 +54,13 @@ export const defaults = {
         "Keras",
         "scikit-learn",
         "XGBoost",
-        "LightGBM",
-        "HuggingFace Transformers",
-        "LangChain"
+        "HuggingFace Transformers"
       ]
     },
     {
       "category": "MLOps & Infra",
       "items": [
         "MLflow",
-        "DVC",
         "Docker",
         "Kubernetes",
         "Airflow",
