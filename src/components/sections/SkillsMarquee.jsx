@@ -10,39 +10,9 @@ const RING_CONFIG = [
   { radius: 430, duration: 74, cw: false, color: "#F97316" },
 ]
 
-function IconNode({ skill, iconColor, duration, cw, allStopped }) {
-  const entry = SKILL_ICONS[skill]
-  const Icon  = entry?.icon
-  const iconAnim = cw ? "ispin-ccw" : "ispin-cw"
-
-  return (
-    <div
-      style={{
-        animationName: iconAnim,
-        animationDuration: `${duration}s`,
-        animationTimingFunction: "linear",
-        animationIterationCount: "infinite",
-        animationPlayState: allStopped ? "paused" : "running",
-      }}
-    >
-      <motion.div
-        className="w-14 h-14 flex items-center justify-center border-2 border-border bg-bg cursor-default"
-        whileHover={{
-          scale: 1.35,
-          borderColor: iconColor,
-          backgroundColor: "#131313",
-          boxShadow: `0 0 18px ${iconColor}55`,
-        }}
-        transition={{ type: "spring", stiffness: 400, damping: 20 }}
-      >
-        {Icon && <Icon size={28} color={iconColor} />}
-      </motion.div>
-    </div>
-  )
-}
-
 function Ring({ skills, radius, duration, cw, color }) {
-  const ringAnim = cw ? "rspin-cw" : "rspin-ccw"
+  const ringKey  = cw ? "cw"  : "ccw"
+  const iconKey  = cw ? "ccw" : "cw"
   const size     = radius * 2
 
   return (
@@ -52,14 +22,12 @@ function Ring({ skills, radius, duration, cw, color }) {
         width: size, height: size,
         top: "50%", left: "50%",
         marginTop: -radius, marginLeft: -radius,
-        animationName: ringAnim,
-        animationDuration: `${duration}s`,
-        animationTimingFunction: "linear",
-        animationIterationCount: "infinite",
+        animation: `orbit-${ringKey} ${duration}s linear infinite`,
       }}
     >
       {skills.map((skill, i) => {
         const entry     = SKILL_ICONS[skill]
+        const Icon      = entry?.icon
         const iconColor = entry?.color ?? color
         const angleDeg  = (i / skills.length) * 360
         const rad       = (angleDeg * Math.PI) / 180
@@ -72,13 +40,21 @@ function Ring({ skills, radius, duration, cw, color }) {
             className="absolute pointer-events-auto"
             style={{ left: x, top: y, width: 56, height: 56 }}
           >
-            <IconNode
-              skill={skill}
-              iconColor={iconColor}
-              duration={duration}
-              cw={cw}
-              allStopped={false}
-            />
+            {/* counter-rotate so icon stays upright */}
+            <div style={{ animation: `orbit-${iconKey} ${duration}s linear infinite`, width: 56, height: 56 }}>
+              <motion.div
+                className="w-14 h-14 flex items-center justify-center border-2 border-border bg-bg cursor-default"
+                whileHover={{
+                  scale: 1.4,
+                  borderColor: iconColor,
+                  backgroundColor: "#131313",
+                  boxShadow: `0 0 20px ${iconColor}66`,
+                }}
+                transition={{ type: "spring", stiffness: 380, damping: 18 }}
+              >
+                {Icon && <Icon size={26} color={iconColor} />}
+              </motion.div>
+            </div>
           </div>
         )
       })}
@@ -89,7 +65,7 @@ function Ring({ skills, radius, duration, cw, color }) {
 export function SkillsMarquee() {
   const { portfolioData } = usePortfolioData()
   const skills = portfolioData.skills ?? []
-  const ref  = useRef(null)
+  const ref    = useRef(null)
   const inView = useInView(ref, { once: true, margin: "-80px" })
 
   const rings = RING_CONFIG.map((cfg, i) => ({ ...cfg, skills: skills[i]?.items ?? [] }))
@@ -97,17 +73,14 @@ export function SkillsMarquee() {
   return (
     <section id="skills-orbit" className="py-24 border-t-2 border-border overflow-hidden">
       <style>{`
-        @keyframes rspin-cw  { from { transform: rotate(0deg);   } to { transform: rotate(360deg);  } }
-        @keyframes rspin-ccw { from { transform: rotate(0deg);   } to { transform: rotate(-360deg); } }
-        @keyframes ispin-cw  { from { transform: rotate(0deg);   } to { transform: rotate(360deg);  } }
-        @keyframes ispin-ccw { from { transform: rotate(0deg);   } to { transform: rotate(-360deg); } }
+        @keyframes orbit-cw  { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg);  } }
+        @keyframes orbit-ccw { 0% { transform: rotate(0deg); } 100% { transform: rotate(-360deg); } }
         @media (prefers-reduced-motion: reduce) {
-          [style*="rspin"], [style*="ispin"] { animation: none !important; }
+          .orbit-ring, .orbit-icon { animation: none !important; }
         }
       `}</style>
 
       <div className="max-w-7xl mx-auto px-8">
-        {/* heading */}
         <div ref={ref} className="mb-16 flex flex-col md:flex-row md:items-end justify-between gap-8">
           <motion.div
             initial={{ opacity: 0, x: -32 }}
@@ -136,7 +109,6 @@ export function SkillsMarquee() {
           </motion.div>
         </div>
 
-        {/* orbit stage */}
         <motion.div
           className="relative mx-auto"
           style={{ width: "100%", maxWidth: 980, aspectRatio: "1 / 1" }}
@@ -144,20 +116,16 @@ export function SkillsMarquee() {
           animate={inView ? { opacity: 1, scale: 1 } : {}}
           transition={{ duration: 0.9, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
         >
-          {/* subtle glow at center */}
           <div
             className="absolute rounded-full pointer-events-none"
             style={{
               width: 200, height: 200,
               top: "50%", left: "50%",
               marginTop: -100, marginLeft: -100,
-              background: "radial-gradient(circle, rgba(223,225,4,0.06) 0%, transparent 70%)",
+              background: "radial-gradient(circle, rgba(223,225,4,0.07) 0%, transparent 70%)",
             }}
           />
-
-          {rings.map((ring, i) => (
-            <Ring key={i} {...ring} />
-          ))}
+          {rings.map((ring, i) => <Ring key={i} {...ring} />)}
         </motion.div>
       </div>
     </section>
