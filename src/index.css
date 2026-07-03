@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@keyframes orbit-cw  { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg);  } }
+@keyframes orbit-ccw { 0% { transform: rotate(0deg); } 100% { transform: rotate(-360deg); } }
+@media (prefers-reduced-motion: reduce) {
+  .orbit-ring, .orbit-icon { animation: none !important; }
+}
+
 @layer base {
   *, *::before, *::after { box-sizing: border-box; }
   html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }

@@ -4,29 +4,28 @@ import { usePortfolioData } from "@/hooks/usePortfolioData"
 import { SKILL_ICONS } from "@/data/skillIcons"
 
 const RING_CONFIG = [
-  { radius: 150, duration: 25, cw: true,  color: "#DFE104" },
-  { radius: 270, duration: 42, cw: false, color: "#A78BFA" },
-  { radius: 390, duration: 60, cw: true,  color: "#34D399" },
-  { radius: 510, duration: 80, cw: false, color: "#F97316" },
+  { radius: 140, duration: 22, cw: true,  color: "#DFE104" },
+  { radius: 250, duration: 38, cw: false, color: "#A78BFA" },
+  { radius: 360, duration: 55, cw: true,  color: "#34D399" },
+  { radius: 470, duration: 74, cw: false, color: "#F97316" },
 ]
 
-const ICON_SIZE  = 68
-const ICON_HALF  = ICON_SIZE / 2
+const ICON_SIZE = 64
 
 function Ring({ skills, radius, duration, cw, color }) {
-  const ringKey = cw ? "cw"  : "ccw"
-  const iconKey = cw ? "ccw" : "cw"
-  const size    = radius * 2
+  const rotateTo = cw ? 360 : -360
+  const size = radius * 2
 
   return (
-    <div
+    <motion.div
       className="absolute rounded-full border border-dashed border-border pointer-events-none"
       style={{
         width: size, height: size,
         top: "50%", left: "50%",
         marginTop: -radius, marginLeft: -radius,
-        animation: `orbit-${ringKey} ${duration}s linear infinite`,
       }}
+      animate={{ rotate: rotateTo }}
+      transition={{ duration, ease: "linear", repeat: Infinity }}
     >
       {skills.map((skill, i) => {
         const entry     = SKILL_ICONS[skill]
@@ -34,51 +33,45 @@ function Ring({ skills, radius, duration, cw, color }) {
         const iconColor = entry?.color ?? color
         const angleDeg  = (i / skills.length) * 360
         const rad       = (angleDeg * Math.PI) / 180
-        const x         = Math.round(radius + radius * Math.sin(rad) - ICON_HALF)
-        const y         = Math.round(radius - radius * Math.cos(rad) - ICON_HALF)
+        const x         = Math.round(radius + radius * Math.sin(rad) - ICON_SIZE / 2)
+        const y         = Math.round(radius - radius * Math.cos(rad) - ICON_SIZE / 2)
 
         return (
           <div
             key={skill}
             className="absolute pointer-events-auto"
-            style={{ left: x, top: y }}
+            style={{ left: x, top: y, width: ICON_SIZE, height: ICON_SIZE + 20 }}
           >
-            <div style={{ animation: `orbit-${iconKey} ${duration}s linear infinite` }}>
+            {/* counter-rotate so icon stays upright */}
+            <motion.div
+              animate={{ rotate: -rotateTo }}
+              transition={{ duration, ease: "linear", repeat: Infinity }}
+              className="flex flex-col items-center gap-1"
+            >
               <motion.div
-                className="flex flex-col items-center gap-1.5"
-                whileHover="hovered"
-                initial="idle"
+                className="flex items-center justify-center border-2 border-border bg-bg"
+                style={{ width: ICON_SIZE, height: ICON_SIZE }}
+                whileHover={{
+                  scale: 1.35,
+                  borderColor: iconColor,
+                  backgroundColor: "#111111",
+                  boxShadow: `0 0 24px ${iconColor}55`,
+                }}
+                transition={{ type: "spring", stiffness: 350, damping: 18 }}
               >
-                <motion.div
-                  className="flex items-center justify-center border-2 border-border bg-bg cursor-default"
-                  style={{ width: ICON_SIZE, height: ICON_SIZE }}
-                  variants={{
-                    idle:    { scale: 1,   borderColor: "#27272A", boxShadow: "0 0 0px transparent" },
-                    hovered: { scale: 1.3, borderColor: iconColor, boxShadow: `0 0 22px ${iconColor}55` },
-                  }}
-                  transition={{ type: "spring", stiffness: 350, damping: 18 }}
-                >
-                  {Icon && <Icon size={32} color={iconColor} />}
-                </motion.div>
-
-                {/* name tag */}
-                <motion.span
-                  className="font-mono text-center leading-tight pointer-events-none whitespace-nowrap"
-                  style={{ fontSize: 9, letterSpacing: "0.12em" }}
-                  variants={{
-                    idle:    { opacity: 0.35, color: "#71717A", y: 0  },
-                    hovered: { opacity: 1,    color: iconColor,  y: -2 },
-                  }}
-                  transition={{ duration: 0.15 }}
-                >
-                  {skill}
-                </motion.span>
+                {Icon && <Icon size={30} color={iconColor} />}
               </motion.div>
-            </div>
+              <span
+                className="font-mono text-center leading-tight whitespace-nowrap select-none"
+                style={{ fontSize: 8, letterSpacing: "0.1em", color: "#71717A" }}
+              >
+                {skill}
+              </span>
+            </motion.div>
           </div>
         )
       })}
-    </div>
+    </motion.div>
   )
 }
 
@@ -92,14 +85,6 @@ export function SkillsMarquee() {
 
   return (
     <section id="skills-orbit" className="py-24 border-t-2 border-border overflow-hidden">
-      <style>{`
-        @keyframes orbit-cw  { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg);  } }
-        @keyframes orbit-ccw { 0% { transform: rotate(0deg); } 100% { transform: rotate(-360deg); } }
-        @media (prefers-reduced-motion: reduce) {
-          [style*="orbit-"] { animation: none !important; }
-        }
-      `}</style>
-
       <div className="max-w-7xl mx-auto px-8">
         <div ref={ref} className="mb-16 flex flex-col md:flex-row md:items-end justify-between gap-8">
           <motion.div
@@ -131,18 +116,19 @@ export function SkillsMarquee() {
 
         <motion.div
           className="relative mx-auto"
-          style={{ width: "100%", maxWidth: 1140, aspectRatio: "1 / 1" }}
+          style={{ width: "100%", maxWidth: 1060, aspectRatio: "1 / 1" }}
           initial={{ opacity: 0, scale: 0.88 }}
           animate={inView ? { opacity: 1, scale: 1 } : {}}
           transition={{ duration: 0.9, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
         >
+          {/* center glow */}
           <div
             className="absolute rounded-full pointer-events-none"
             style={{
-              width: 220, height: 220,
+              width: 180, height: 180,
               top: "50%", left: "50%",
-              marginTop: -110, marginLeft: -110,
-              background: "radial-gradient(circle, rgba(223,225,4,0.07) 0%, transparent 70%)",
+              marginTop: -90, marginLeft: -90,
+              background: "radial-gradient(circle, rgba(223,225,4,0.08) 0%, transparent 70%)",
             }}
           />
           {rings.map((ring, i) => <Ring key={i} {...ring} />)}
