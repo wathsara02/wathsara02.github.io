@@ -1,23 +1,51 @@
-﻿import { useState, useRef } from "react"
+﻿import { useRef } from "react"
 import { motion, useInView } from "framer-motion"
 import { usePortfolioData } from "@/hooks/usePortfolioData"
 import { SKILL_ICONS } from "@/data/skillIcons"
 
 const RING_CONFIG = [
-  { radius: 110, duration: 20, cw: true,  color: "#DFE104" },
-  { radius: 192, duration: 34, cw: false, color: "#A78BFA" },
-  { radius: 274, duration: 50, cw: true,  color: "#34D399" },
-  { radius: 356, duration: 68, cw: false, color: "#F97316" },
+  { radius: 130, duration: 22, cw: true,  color: "#DFE104" },
+  { radius: 230, duration: 38, cw: false, color: "#A78BFA" },
+  { radius: 330, duration: 55, cw: true,  color: "#34D399" },
+  { radius: 430, duration: 74, cw: false, color: "#F97316" },
 ]
 
-function Ring({ skills, radius, duration, cw, onHover, onLeave, allPaused }) {
-  const ringAnim = cw ? "rspin-cw"  : "rspin-ccw"
+function IconNode({ skill, iconColor, duration, cw, allStopped }) {
+  const entry = SKILL_ICONS[skill]
+  const Icon  = entry?.icon
   const iconAnim = cw ? "ispin-ccw" : "ispin-cw"
-  const paused   = allPaused ? "paused" : "running"
+
+  return (
+    <div
+      style={{
+        animationName: iconAnim,
+        animationDuration: `${duration}s`,
+        animationTimingFunction: "linear",
+        animationIterationCount: "infinite",
+        animationPlayState: allStopped ? "paused" : "running",
+      }}
+    >
+      <motion.div
+        className="w-14 h-14 flex items-center justify-center border-2 border-border bg-bg cursor-default"
+        whileHover={{
+          scale: 1.35,
+          borderColor: iconColor,
+          backgroundColor: "#131313",
+          boxShadow: `0 0 18px ${iconColor}55`,
+        }}
+        transition={{ type: "spring", stiffness: 400, damping: 20 }}
+      >
+        {Icon && <Icon size={28} color={iconColor} />}
+      </motion.div>
+    </div>
+  )
+}
+
+function Ring({ skills, radius, duration, cw, color }) {
+  const ringAnim = cw ? "rspin-cw" : "rspin-ccw"
   const size     = radius * 2
 
   return (
-    /* ring: centered via negative margin — no transform needed, so animation won't conflict */
     <div
       className="absolute rounded-full border border-dashed border-border pointer-events-none"
       style={{
@@ -28,42 +56,29 @@ function Ring({ skills, radius, duration, cw, onHover, onLeave, allPaused }) {
         animationDuration: `${duration}s`,
         animationTimingFunction: "linear",
         animationIterationCount: "infinite",
-        animationPlayState: paused,
       }}
     >
       {skills.map((skill, i) => {
-        const entry = SKILL_ICONS[skill]
-        const Icon  = entry?.icon
-        const iconColor = entry?.color ?? "#DFE104"
+        const entry     = SKILL_ICONS[skill]
+        const iconColor = entry?.color ?? color
         const angleDeg  = (i / skills.length) * 360
         const rad       = (angleDeg * Math.PI) / 180
-        const x         = Math.round(radius + radius * Math.sin(rad) - 20)
-        const y         = Math.round(radius - radius * Math.cos(rad) - 20)
+        const x         = Math.round(radius + radius * Math.sin(rad) - 28)
+        const y         = Math.round(radius - radius * Math.cos(rad) - 28)
 
         return (
           <div
             key={skill}
             className="absolute pointer-events-auto"
-            style={{ left: x, top: y, width: 40, height: 40 }}
+            style={{ left: x, top: y, width: 56, height: 56 }}
           >
-            <div
-              style={{
-                animationName: iconAnim,
-                animationDuration: `${duration}s`,
-                animationTimingFunction: "linear",
-                animationIterationCount: "infinite",
-                animationPlayState: paused,
-              }}
-            >
-              <button
-                className="w-10 h-10 flex items-center justify-center border-2 border-border bg-bg hover:border-accent hover:bg-surface transition-colors duration-150"
-                onMouseEnter={() => onHover(skill, iconColor)}
-                onMouseLeave={onLeave}
-                aria-label={skill}
-              >
-                {Icon && <Icon size={20} color={iconColor} />}
-              </button>
-            </div>
+            <IconNode
+              skill={skill}
+              iconColor={iconColor}
+              duration={duration}
+              cw={cw}
+              allStopped={false}
+            />
           </div>
         )
       })}
@@ -74,20 +89,18 @@ function Ring({ skills, radius, duration, cw, onHover, onLeave, allPaused }) {
 export function SkillsMarquee() {
   const { portfolioData } = usePortfolioData()
   const skills = portfolioData.skills ?? []
-  const [hovered, setHovered] = useState(null)
-  const ref = useRef(null)
+  const ref  = useRef(null)
   const inView = useInView(ref, { once: true, margin: "-80px" })
 
-  const totalSkills = skills.reduce((s, c) => s + c.items.length, 0)
   const rings = RING_CONFIG.map((cfg, i) => ({ ...cfg, skills: skills[i]?.items ?? [] }))
 
   return (
     <section id="skills-orbit" className="py-24 border-t-2 border-border overflow-hidden">
       <style>{`
-        @keyframes rspin-cw  { from { transform: rotate(0deg);    } to { transform: rotate(360deg);  } }
-        @keyframes rspin-ccw { from { transform: rotate(0deg);    } to { transform: rotate(-360deg); } }
-        @keyframes ispin-cw  { from { transform: rotate(0deg);    } to { transform: rotate(360deg);  } }
-        @keyframes ispin-ccw { from { transform: rotate(0deg);    } to { transform: rotate(-360deg); } }
+        @keyframes rspin-cw  { from { transform: rotate(0deg);   } to { transform: rotate(360deg);  } }
+        @keyframes rspin-ccw { from { transform: rotate(0deg);   } to { transform: rotate(-360deg); } }
+        @keyframes ispin-cw  { from { transform: rotate(0deg);   } to { transform: rotate(360deg);  } }
+        @keyframes ispin-ccw { from { transform: rotate(0deg);   } to { transform: rotate(-360deg); } }
         @media (prefers-reduced-motion: reduce) {
           [style*="rspin"], [style*="ispin"] { animation: none !important; }
         }
@@ -126,52 +139,25 @@ export function SkillsMarquee() {
         {/* orbit stage */}
         <motion.div
           className="relative mx-auto"
-          style={{ width: "100%", maxWidth: 840, aspectRatio: "1 / 1" }}
+          style={{ width: "100%", maxWidth: 980, aspectRatio: "1 / 1" }}
           initial={{ opacity: 0, scale: 0.88 }}
           animate={inView ? { opacity: 1, scale: 1 } : {}}
           transition={{ duration: 0.9, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
         >
-          {rings.map((ring, i) => (
-            <Ring
-              key={i}
-              {...ring}
-              allPaused={hovered !== null}
-              onHover={(skill, col) => setHovered({ skill, color: col })}
-              onLeave={() => setHovered(null)}
-            />
-          ))}
-
-          {/* center node */}
+          {/* subtle glow at center */}
           <div
-            className="absolute border-2 border-border bg-bg flex flex-col items-center justify-center"
+            className="absolute rounded-full pointer-events-none"
             style={{
-              width: 120, height: 120,
+              width: 200, height: 200,
               top: "50%", left: "50%",
-              marginTop: -60, marginLeft: -60,
+              marginTop: -100, marginLeft: -100,
+              background: "radial-gradient(circle, rgba(223,225,4,0.06) 0%, transparent 70%)",
             }}
-          >
-            <div
-              className="absolute border border-dashed"
-              style={{ inset: 8, borderColor: "#DFE10440" }}
-            />
-            {hovered ? (
-              <span
-                className="relative font-mono text-[10px] uppercase tracking-widest text-center px-2 leading-snug"
-                style={{ color: hovered.color }}
-              >
-                {hovered.skill}
-              </span>
-            ) : (
-              <>
-                <span className="relative font-display font-extrabold text-3xl text-accent leading-none">
-                  {totalSkills}
-                </span>
-                <span className="relative font-mono text-[9px] uppercase tracking-[0.25em] text-faint mt-1">
-                  tools
-                </span>
-              </>
-            )}
-          </div>
+          />
+
+          {rings.map((ring, i) => (
+            <Ring key={i} {...ring} />
+          ))}
         </motion.div>
       </div>
     </section>
