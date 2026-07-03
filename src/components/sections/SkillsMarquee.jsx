@@ -10,47 +10,53 @@ const RING_CONFIG = [
   { radius: 356, duration: 68, cw: false, color: "#F97316" },
 ]
 
-function Ring({ skills, radius, duration, cw, color, onHover, onLeave, allPaused }) {
-  const ringAnim  = cw ? "rspin-cw"  : "rspin-ccw"
-  const iconAnim  = cw ? "ispin-ccw" : "ispin-cw"
-  const paused    = allPaused ? "paused" : "running"
-  const size      = radius * 2
+function Ring({ skills, radius, duration, cw, onHover, onLeave, allPaused }) {
+  const ringAnim = cw ? "rspin-cw"  : "rspin-ccw"
+  const iconAnim = cw ? "ispin-ccw" : "ispin-cw"
+  const paused   = allPaused ? "paused" : "running"
+  const size     = radius * 2
 
   return (
+    /* ring: centered via negative margin — no transform needed, so animation won't conflict */
     <div
-      className="absolute rounded-full border border-dashed border-border"
+      className="absolute rounded-full border border-dashed border-border pointer-events-none"
       style={{
         width: size, height: size,
         top: "50%", left: "50%",
-        animation: `${ringAnim} ${duration}s linear infinite`,
+        marginTop: -radius, marginLeft: -radius,
+        animationName: ringAnim,
+        animationDuration: `${duration}s`,
+        animationTimingFunction: "linear",
+        animationIterationCount: "infinite",
         animationPlayState: paused,
       }}
     >
       {skills.map((skill, i) => {
         const entry = SKILL_ICONS[skill]
         const Icon  = entry?.icon
-        const iconColor = entry?.color ?? color
+        const iconColor = entry?.color ?? "#DFE104"
         const angleDeg  = (i / skills.length) * 360
+        const rad       = (angleDeg * Math.PI) / 180
+        const x         = Math.round(radius + radius * Math.sin(rad) - 20)
+        const y         = Math.round(radius - radius * Math.cos(rad) - 20)
 
         return (
           <div
             key={skill}
-            className="absolute"
-            style={{
-              top: "50%", left: "50%",
-              width: 0, height: 0,
-              transform: `rotate(${angleDeg}deg) translateX(${radius}px)`,
-            }}
+            className="absolute pointer-events-auto"
+            style={{ left: x, top: y, width: 40, height: 40 }}
           >
             <div
               style={{
-                animation: `${iconAnim} ${duration}s linear infinite`,
+                animationName: iconAnim,
+                animationDuration: `${duration}s`,
+                animationTimingFunction: "linear",
+                animationIterationCount: "infinite",
                 animationPlayState: paused,
               }}
             >
               <button
-                className="flex items-center justify-center border-2 border-border bg-bg transition-all duration-150 hover:border-accent hover:bg-surface"
-                style={{ width: 40, height: 40, transform: "translate(-50%, -50%)" }}
+                className="w-10 h-10 flex items-center justify-center border-2 border-border bg-bg hover:border-accent hover:bg-surface transition-colors duration-150"
                 onMouseEnter={() => onHover(skill, iconColor)}
                 onMouseLeave={onLeave}
                 aria-label={skill}
@@ -73,23 +79,13 @@ export function SkillsMarquee() {
   const inView = useInView(ref, { once: true, margin: "-80px" })
 
   const totalSkills = skills.reduce((s, c) => s + c.items.length, 0)
-
-  const rings = RING_CONFIG.map((cfg, i) => ({
-    ...cfg,
-    skills: skills[i]?.items ?? [],
-  }))
+  const rings = RING_CONFIG.map((cfg, i) => ({ ...cfg, skills: skills[i]?.items ?? [] }))
 
   return (
     <section id="skills-orbit" className="py-24 border-t-2 border-border overflow-hidden">
       <style>{`
-        @keyframes rspin-cw  {
-          from { transform: translate(-50%,-50%) rotate(0deg);    }
-          to   { transform: translate(-50%,-50%) rotate(360deg);  }
-        }
-        @keyframes rspin-ccw {
-          from { transform: translate(-50%,-50%) rotate(0deg);    }
-          to   { transform: translate(-50%,-50%) rotate(-360deg); }
-        }
+        @keyframes rspin-cw  { from { transform: rotate(0deg);    } to { transform: rotate(360deg);  } }
+        @keyframes rspin-ccw { from { transform: rotate(0deg);    } to { transform: rotate(-360deg); } }
         @keyframes ispin-cw  { from { transform: rotate(0deg);    } to { transform: rotate(360deg);  } }
         @keyframes ispin-ccw { from { transform: rotate(0deg);    } to { transform: rotate(-360deg); } }
         @media (prefers-reduced-motion: reduce) {
@@ -110,7 +106,6 @@ export function SkillsMarquee() {
               Stack<br />System
             </h2>
           </motion.div>
-
           <motion.div
             className="flex flex-col gap-2.5"
             initial={{ opacity: 0 }}
@@ -132,7 +127,7 @@ export function SkillsMarquee() {
         <motion.div
           className="relative mx-auto"
           style={{ width: "100%", maxWidth: 840, aspectRatio: "1 / 1" }}
-          initial={{ opacity: 0, scale: 0.85 }}
+          initial={{ opacity: 0, scale: 0.88 }}
           animate={inView ? { opacity: 1, scale: 1 } : {}}
           transition={{ duration: 0.9, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
         >
@@ -146,28 +141,34 @@ export function SkillsMarquee() {
             />
           ))}
 
-          {/* center */}
+          {/* center node */}
           <div
             className="absolute border-2 border-border bg-bg flex flex-col items-center justify-center"
             style={{
               width: 120, height: 120,
               top: "50%", left: "50%",
-              transform: "translate(-50%,-50%)",
-              boxShadow: "0 0 60px rgba(223,225,4,0.07)",
+              marginTop: -60, marginLeft: -60,
             }}
           >
-            <div className="absolute border border-dashed" style={{ inset: 8, borderColor: "#DFE10440" }} />
+            <div
+              className="absolute border border-dashed"
+              style={{ inset: 8, borderColor: "#DFE10440" }}
+            />
             {hovered ? (
               <span
-                className="relative font-mono text-[10px] uppercase tracking-widest text-center px-3 leading-snug"
+                className="relative font-mono text-[10px] uppercase tracking-widest text-center px-2 leading-snug"
                 style={{ color: hovered.color }}
               >
                 {hovered.skill}
               </span>
             ) : (
               <>
-                <span className="relative font-display font-extrabold text-3xl text-accent leading-none">{totalSkills}</span>
-                <span className="relative font-mono text-[9px] uppercase tracking-[0.25em] text-faint mt-1">tools</span>
+                <span className="relative font-display font-extrabold text-3xl text-accent leading-none">
+                  {totalSkills}
+                </span>
+                <span className="relative font-mono text-[9px] uppercase tracking-[0.25em] text-faint mt-1">
+                  tools
+                </span>
               </>
             )}
           </div>
