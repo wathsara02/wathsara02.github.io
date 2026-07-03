@@ -7,6 +7,7 @@ import { ScrollProgressBar } from "@/components/ui/ScrollProgressBar"
 const About      = lazy(() => import("@/components/sections/About").then(m => ({ default: m.About })))
 const SkillsIcons = lazy(() => import("@/components/sections/SkillsIcons").then(m => ({ default: m.SkillsIcons })))
 const Skills     = lazy(() => import("@/components/sections/Skills").then(m => ({ default: m.Skills })))
+const SkillsMarquee = lazy(() => import("@/components/sections/SkillsMarquee").then(m => ({ default: m.SkillsMarquee })))
 const Interests  = lazy(() => import("@/components/sections/Interests").then(m => ({ default: m.Interests })))
 const Projects   = lazy(() => import("@/components/sections/Projects").then(m => ({ default: m.Projects })))
 const Experience = lazy(() => import("@/components/sections/Experience").then(m => ({ default: m.Experience })))
@@ -24,6 +25,7 @@ export function Portfolio() {
           <About />
           <Skills />
           <SkillsIcons />
+          <SkillsMarquee />
           <Interests />
           <Projects />
           <Experience />
