@@ -62,10 +62,10 @@ export const SKILL_ICONS = {
   "Redshift": { icon: FaDatabase,     color: "#8C4FFF" },
 
   // Visualization
-  "Matplotlib": { icon: CHART_ICON,   color: "#11557C" },
-  "Seaborn":    { icon: CHART_ICON,   color: "#4C72B0" },
-  "Plotly":     { icon: SiPlotly,     color: "#3F4F75" },
-  "Streamlit":  { icon: SiStreamlit,  color: "#FF4B4B" },
+  "Matplotlib": { icon: CHART_ICON,     color: "#4FC3F7" },
+  "Seaborn":    { icon: CHART_ICON,     color: "#7EB8F7" },
+  "Plotly":     { icon: SiPlotly,       color: "#A0AADD" },
+  "Streamlit":  { icon: SiStreamlit,    color: "#FF4B4B" },
   "Gradio":     { icon: BsBarChartFill, color: "#F97316" },
   "Tableau":    { icon: BsBarChartFill, color: "#E97627" },
 }
