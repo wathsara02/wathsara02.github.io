@@ -24,8 +24,8 @@ export function Portfolio() {
         <Hero />
         <Suspense fallback={null}>
           <About />
-          <Skills />
-          <SkillsIcons />
+          {/* <Skills /> */}
+          {/* <SkillsIcons /> */}
           <SkillsGrid />
           <SkillsMarquee />
           <Interests />
