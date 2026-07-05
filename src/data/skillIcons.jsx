@@ -1,19 +1,22 @@
 ﻿import {
   SiPython, SiR, SiGnubash, SiJulia,
-  SiPytorch, SiTensorflow, SiKeras, SiScikitlearn, SiHuggingface,
-  SiDocker, SiKubernetes, SiApacheairflow, SiFastapi, SiMlflow,
+  SiPytorch, SiTensorflow, SiKeras, SiScikitlearn,
+  SiDocker, SiKubernetes, SiApacheairflow, SiFastapi,
   SiGooglecloud, SiPandas, SiApachespark, SiDbt, SiSnowflake, SiApachekafka,
   SiPlotly, SiStreamlit,
   SiPostgresql, SiGit, SiGithub, SiJupyter, SiAnaconda,
   SiGrafana, SiTerraform, SiRedis, SiLinux,
 } from "react-icons/si"
-import { FaDatabase, FaCloud, FaServer } from "react-icons/fa"
-import { BsBraces, BsTerminal, BsCloud, BsBarChartFill } from "react-icons/bs"
-import { TbBrandOpenai, TbChartBar, TbBrain, TbChartHistogram } from "react-icons/tb"
+import { FaDatabase, FaCloud } from "react-icons/fa"
+import { BsCloud, BsBarChartFill } from "react-icons/bs"
+import { TbChartBar, TbBrain, TbChartHistogram } from "react-icons/tb"
 import { VscAzure } from "react-icons/vsc"
+import {
+  SiHuggingface, SiLangchain, SiMlflow as SiMlflow2, SiDvc as SiDvc2,
+  SiPrefect as SiPrefect2, SiRay as SiRay2, SiGooglebigquery, SiGradio,
+} from "@icons-pack/react-simple-icons"
 
-// Generic fallback icons for unmapped skills
-const AWS_ICON = BsCloud
+const AWS_ICON   = BsCloud
 const CHART_ICON = TbChartHistogram
 
 export const SKILL_ICONS = {
@@ -32,41 +35,41 @@ export const SKILL_ICONS = {
   "HuggingFace Transformers": { icon: SiHuggingface, color: "#FFD21E" },
   "XGBoost":                  { icon: TbBrain,       color: "#10B981" },
   "LightGBM":                 { icon: TbChartBar,    color: "#3B82F6" },
-  "LangChain":                { icon: TbBrandOpenai, color: "#00A67E" },
+  "LangChain":                { icon: SiLangchain,   color: "#00A67E" },
 
   // MLOps
-  "MLflow":     { icon: SiMlflow,       color: "#0194E2" },
-  "Docker":     { icon: SiDocker,       color: "#2496ED" },
-  "Kubernetes": { icon: SiKubernetes,   color: "#326CE5" },
-  "Airflow":    { icon: SiApacheairflow,color: "#017CEE" },
-  "FastAPI":    { icon: SiFastapi,      color: "#009688" },
-  "DVC":        { icon: BsTerminal,     color: "#945DD6" },
-  "Prefect":    { icon: BsBraces,       color: "#DFE104" },
-  "Ray":        { icon: FaServer,       color: "#028CF0" },
+  "MLflow":     { icon: SiMlflow2,       color: "#0194E2" },
+  "Docker":     { icon: SiDocker,        color: "#2496ED" },
+  "Kubernetes": { icon: SiKubernetes,    color: "#326CE5" },
+  "Airflow":    { icon: SiApacheairflow, color: "#017CEE" },
+  "FastAPI":    { icon: SiFastapi,       color: "#009688" },
+  "DVC":        { icon: SiDvc2,          color: "#945DD6" },
+  "Prefect":    { icon: SiPrefect2,      color: "#DFE104" },
+  "Ray":        { icon: SiRay2,          color: "#028CF0" },
 
   // Cloud
-  "AWS SageMaker": { icon: AWS_ICON,        color: "#FF9900" },
-  "GCP Vertex AI": { icon: SiGooglecloud,   color: "#4285F4" },
-  "Azure ML":      { icon: VscAzure,color: "#0089D6" },
-  "Lambda":        { icon: AWS_ICON,        color: "#FF9900" },
-  "S3":            { icon: AWS_ICON,        color: "#FF9900" },
-  "EC2":           { icon: FaCloud,         color: "#FF9900" },
+  "AWS SageMaker": { icon: AWS_ICON,         color: "#FF9900" },
+  "GCP Vertex AI": { icon: SiGooglecloud,    color: "#4285F4" },
+  "Azure ML":      { icon: VscAzure,         color: "#0089D6" },
+  "Lambda":        { icon: AWS_ICON,         color: "#FF9900" },
+  "S3":            { icon: AWS_ICON,         color: "#FF9900" },
+  "EC2":           { icon: FaCloud,          color: "#FF9900" },
 
   // Data Engineering
-  "Pandas":   { icon: SiPandas,       color: "#150458" },
-  "PySpark":  { icon: SiApachespark,  color: "#E25A1C" },
-  "dbt":      { icon: SiDbt,          color: "#FF694B" },
-  "BigQuery": { icon: SiGooglecloud,  color: "#4285F4" },
-  "Snowflake":{ icon: SiSnowflake,    color: "#29B5E8" },
-  "Kafka":    { icon: SiApachekafka,  color: "#F5F5F5" },
-  "Redshift": { icon: FaDatabase,     color: "#8C4FFF" },
+  "Pandas":    { icon: SiPandas,         color: "#150458" },
+  "PySpark":   { icon: SiApachespark,    color: "#E25A1C" },
+  "dbt":       { icon: SiDbt,            color: "#FF694B" },
+  "BigQuery":  { icon: SiGooglebigquery, color: "#4285F4" },
+  "Snowflake": { icon: SiSnowflake,      color: "#29B5E8" },
+  "Kafka":     { icon: SiApachekafka,    color: "#F5F5F5" },
+  "Redshift":  { icon: FaDatabase,       color: "#8C4FFF" },
 
   // Visualization
   "Matplotlib": { icon: CHART_ICON,     color: "#4FC3F7" },
   "Seaborn":    { icon: CHART_ICON,     color: "#7EB8F7" },
   "Plotly":     { icon: SiPlotly,       color: "#A0AADD" },
   "Streamlit":  { icon: SiStreamlit,    color: "#FF4B4B" },
-  "Gradio":     { icon: BsBarChartFill, color: "#F97316" },
+  "Gradio":     { icon: SiGradio,       color: "#F97316" },
   "Tableau":    { icon: BsBarChartFill, color: "#E97627" },
 }
 
