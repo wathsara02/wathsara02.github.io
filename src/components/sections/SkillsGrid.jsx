@@ -58,8 +58,8 @@ export function SkillsGrid() {
                   {Icon && <Icon size={ICON_SIZE} color={color} />}
                 </motion.div>
                 <span
-                  className="font-mono text-center leading-tight whitespace-nowrap select-none"
-                  style={{ fontSize: 7, letterSpacing: "0.08em", color: "#71717A" }}
+                  className="font-mono text-center leading-tight select-none"
+                  style={{ fontSize: 9, letterSpacing: "0.06em", color: "#A1A1AA", maxWidth: CARD_SIZE }}
                 >
                   {skill}
                 </span>
