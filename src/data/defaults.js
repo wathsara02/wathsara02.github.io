@@ -228,44 +228,34 @@ export const defaults = {
   ],
   "interests": [
     {
-      "icon": "🧠",
-      "title": "Large Language Models",
-      "description": "RAG pipelines, fine-tuning, and prompt engineering at scale — making LLMs reliable in production."
+      "icon": "🤖",
+      "title": "Agentic AI Systems",
+      "description": "AI systems that can reason through tasks, use tools, follow workflows, and produce structured outputs beyond simple chatbot responses."
     },
     {
-      "icon": "👁️",
-      "title": "Computer Vision",
-      "description": "Segmentation, detection, medical imaging — teaching machines to see what matters."
+      "icon": "🔗",
+      "title": "Multi-Agent Workflows",
+      "description": "Specialized AI agents working together for research, analysis, planning, recommendation, and decision-support tasks."
     },
     {
       "icon": "⚙️",
-      "title": "MLOps & Systems",
-      "description": "Feature stores, model registries, drift monitoring — making models survive the real world."
-    },
-    {
-      "icon": "🔍",
-      "title": "Interpretability",
-      "description": "SHAP, LIME, causal inference — building models that humans can actually trust and audit."
-    },
-    {
-      "icon": "📡",
-      "title": "Streaming & Real-Time ML",
-      "description": "Kafka, Flink, sub-100ms inference — ML at the speed of events."
-    },
-    {
-      "icon": "🧬",
-      "title": "Biomedical AI",
-      "description": "Applying deep learning to genomics, pathology slides, and clinical decision support."
+      "title": "ML Engineering Products",
+      "description": "Machine learning models connected with real applications, dashboards, APIs, reports, and user-friendly interfaces."
     },
     {
       "icon": "📚",
-      "title": "Research & Papers",
-      "description": "Reading 2–3 papers a week. Currently obsessed with mechanistic interpretability and sparse autoencoders."
+      "title": "RAG & Knowledge Systems",
+      "description": "AI systems that retrieve useful knowledge from documents, databases, or vector stores to generate more grounded and context-aware answers."
     },
     {
-      "icon": "🌐",
-      "title": "Open Source",
-      "description": "Contributing to the tools that the community depends on — and building small utilities no one asked for."
+      "icon": "🖥️",
+      "title": "AI Product Interfaces",
+      "description": "Clean interfaces that make AI outputs understandable, interactive, visual, and useful for real users."
+    },
+    {
+      "icon": "⚡",
+      "title": "AI Automation & Decision Support",
+      "description": "Workflows that reduce manual effort by combining data, AI reasoning, reports, and recommendations for better decisions."
     }
   ],
   "contact": {
