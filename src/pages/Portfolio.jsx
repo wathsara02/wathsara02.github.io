@@ -27,7 +27,7 @@ export function Portfolio() {
           {/* <Skills /> */}
           {/* <SkillsIcons /> */}
           <SkillsGrid />
-          <SkillsMarquee />
+          {/* <SkillsMarquee /> */}
           <Interests />
           <Projects />
           <Experience />
