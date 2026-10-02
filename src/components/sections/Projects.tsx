@@ -25,20 +25,27 @@ function ProjectLink({ href, label, projectTitle }: { href: string; label: strin
   )
 }
 
-/** The right-hand visual: a screenshot when there is one, otherwise the headline numbers. */
+/** The card's top visual: a screenshot when there is one, otherwise the headline numbers. */
 function ProjectVisual({ project }: { project: Project }) {
   const image = safeUrl(project.image)
   if (image) {
     return (
-      <div className="aspect-video overflow-hidden border-2 border-border bg-surface2">
-        <img src={image} alt={`Screenshot of ${project.title}`} loading="lazy" decoding="async" className="size-full object-cover" />
+      <div className="aspect-video overflow-hidden border-b-2 border-border bg-surface2">
+        <img
+          src={image}
+          alt={`Screenshot of ${project.title}`}
+          loading="lazy"
+          decoding="async"
+          className="size-full object-cover transition-transform duration-500 ease-out-expo group-hover:scale-[1.03]"
+        />
       </div>
     )
   }
+  if (project.metrics.length === 0) return null
   return (
-    <dl className="border-2 border-border bg-surface">
+    <dl className="grid aspect-video content-center gap-5 border-b-2 border-border bg-surface p-6">
       {project.metrics.map(({ value, label }) => (
-        <div key={label} className="flex flex-col-reverse border-b-2 border-border p-5 last:border-b-0">
+        <div key={label} className="flex flex-col-reverse">
           <dt className="eyebrow text-faint">{label}</dt>
           <dd className="mb-1 font-display text-4xl font-bold leading-none text-accent">{value}</dd>
         </div>
@@ -47,61 +54,53 @@ function ProjectVisual({ project }: { project: Project }) {
   )
 }
 
-function ProjectRow({ project, position }: { project: Project; position: number }) {
+function ProjectCard({ project, position }: { project: Project; position: number }) {
   const liveUrl = safeUrl(project.liveUrl)
   const githubUrl = safeUrl(project.githubUrl)
-  const hasVisual = !!safeUrl(project.image) || project.metrics.length > 0
   const [isExpanded, setIsExpanded] = useState(false)
   const isLong = project.description.length > LONG_DESCRIPTION_CHARS
   const clamp = isLong && !isExpanded ? 'line-clamp-3' : ''
 
   return (
-    <Reveal>
-      <article className="group relative grid gap-6 border-b-2 border-border py-8 md:grid-cols-12 md:gap-8 md:py-10">
-        <span aria-hidden="true" className="absolute -left-gutter top-0 h-full w-1 origin-top scale-y-0 bg-accent transition-transform duration-300 ease-out-expo group-hover:scale-y-100" />
+    <article className="group flex h-full flex-col border-2 border-border bg-base transition-[transform,box-shadow,border-color] duration-200 ease-out-expo hover:-translate-x-1 hover:-translate-y-1 hover:border-accent hover:shadow-hard">
+      <ProjectVisual project={project} />
 
-        <p aria-hidden="true" className="font-mono text-sm tracking-widest text-faint transition-colors group-hover:text-accent md:col-span-1">
+      <div className="flex flex-1 flex-col p-6 md:p-8">
+        <p aria-hidden="true" className="mb-3 font-mono text-sm tracking-widest text-faint transition-colors group-hover:text-accent">
           {String(position).padStart(2, '0')}
         </p>
+        <h3 className="font-display text-title font-bold uppercase">{project.title}</h3>
+        <p className={`mt-3 leading-relaxed text-secondary ${clamp}`}>{project.description}</p>
+        {isLong && (
+          <button
+            type="button"
+            aria-expanded={isExpanded}
+            onClick={() => setIsExpanded((expanded) => !expanded)}
+            className="mt-2 w-fit font-mono text-xs uppercase tracking-widest text-accent hover:underline"
+          >
+            {isExpanded ? 'Show less' : 'Read more'}
+            <span className="sr-only"> about {project.title}</span>
+          </button>
+        )}
 
-        <div className={hasVisual ? 'md:col-span-7' : 'md:col-span-11'}>
-          <h3 className="font-display text-title font-bold uppercase">{project.title}</h3>
-          <p className={`mt-3 max-w-3xl leading-relaxed text-secondary ${clamp}`}>{project.description}</p>
-          {isLong && (
-            <button
-              type="button"
-              aria-expanded={isExpanded}
-              onClick={() => setIsExpanded((expanded) => !expanded)}
-              className="mt-2 font-mono text-xs uppercase tracking-widest text-accent hover:underline"
-            >
-              {isExpanded ? 'Show less' : 'Read more'}
-              <span className="sr-only"> about {project.title}</span>
-            </button>
-          )}
+        <ul aria-label="Technologies" className="mt-5 flex flex-wrap gap-2">
+          {project.tags.map((tag) => (
+            <li key={tag} className="border border-border px-2.5 py-1 font-mono text-xs text-secondary">{tag}</li>
+          ))}
+        </ul>
 
-          <ul aria-label="Technologies" className="mt-5 flex flex-wrap gap-2">
-            {project.tags.map((tag) => (
-              <li key={tag} className="border border-border px-2.5 py-1 font-mono text-xs text-secondary">{tag}</li>
-            ))}
-          </ul>
-
-          {(liveUrl || githubUrl) && (
-            <div className="mt-6 flex flex-wrap gap-6">
-              {liveUrl && <ProjectLink href={liveUrl} label="Live" projectTitle={project.title} />}
-              {githubUrl && <ProjectLink href={githubUrl} label="Code" projectTitle={project.title} />}
-            </div>
-          )}
-        </div>
-
-        {hasVisual && (
-          <div className="md:col-span-4">
-            <ProjectVisual project={project} />
+        {(liveUrl || githubUrl) && (
+          <div className="mt-auto flex flex-wrap gap-6 pt-6">
+            {liveUrl && <ProjectLink href={liveUrl} label="Live" projectTitle={project.title} />}
+            {githubUrl && <ProjectLink href={githubUrl} label="Code" projectTitle={project.title} />}
           </div>
         )}
-      </article>
-    </Reveal>
+      </div>
+    </article>
   )
 }
+
+const CARD_STAGGER_MS = 80
 
 export function Projects() {
   const { projects } = usePortfolioData().portfolioData
@@ -110,9 +109,11 @@ export function Projects() {
     <section id="projects" className="py-section">
       <div className="shell">
         <SectionHeader index={sectionIndex('projects')} title="Projects" subtitle="Things I've designed, trained and shipped." />
-        <div>
+        <div className="mt-10 grid gap-6 md:mt-12 md:grid-cols-2 md:gap-8">
           {projects.map((project, i) => (
-            <ProjectRow key={project.id} project={project} position={i + 1} />
+            <Reveal key={project.id} delay={(i % 2) * CARD_STAGGER_MS}>
+              <ProjectCard project={project} position={i + 1} />
+            </Reveal>
           ))}
         </div>
       </div>
