@@ -31,7 +31,7 @@
       "label": "Win rate vs. random baseline"
     },
     {
-      "value": "3",
+      "value": "4",
       "label": "Projects built end to end"
     }
   ],
@@ -170,6 +170,24 @@
       "githubUrl": "https://github.com/wathsara02/Roomora",
       "liveUrl": "https://roomora-kappa.vercel.app/pre-made-rooms",
       "image": "/projects/roomora.webp"
+    },
+    {
+      "id": 4,
+      "title": "Ceylon Compass",
+      "description": "Built a full-stack directory and submission platform for Sri Lankan restaurants, accommodations, and events, browsable by country and city. Users submit listings that go through an admin approval workflow, with email and in-app notifications on approval or rejection. The React 19 frontend talks to an Express API that verifies Firebase ID tokens and enforces an admin-role guard, with Firestore behind a repository layer, Cloudinary for image uploads, and the whole app deployed as a single Vercel project.",
+      "tags": [
+        "React",
+        "Express",
+        "Node.js",
+        "Firebase Auth",
+        "Firestore",
+        "Cloudinary",
+        "Vercel"
+      ],
+      "metrics": [],
+      "githubUrl": "https://github.com/wathsara02/ceylon-compass",
+      "liveUrl": "https://ceylon-compass.vercel.app",
+      "image": "/projects/ceylon.webp"
     }
   ],
   "experience": [
