@@ -65,12 +65,12 @@ function ProjectCard({ project, position }: { project: Project; position: number
     <article className="group flex h-full flex-col border-2 border-border bg-base transition-[transform,box-shadow,border-color] duration-200 ease-out-expo hover:-translate-x-1 hover:-translate-y-1 hover:border-accent hover:shadow-hard">
       <ProjectVisual project={project} />
 
-      <div className="flex flex-1 flex-col p-6 md:p-8">
-        <p aria-hidden="true" className="mb-3 font-mono text-sm tracking-widest text-faint transition-colors group-hover:text-accent">
+      <div className="flex flex-1 flex-col p-5 md:p-6">
+        <p aria-hidden="true" className="mb-2 font-mono text-sm tracking-widest text-faint transition-colors group-hover:text-accent">
           {String(position).padStart(2, '0')}
         </p>
-        <h3 className="font-display text-title font-bold uppercase">{project.title}</h3>
-        <p className={`mt-3 leading-relaxed text-secondary ${clamp}`}>{project.description}</p>
+        <h3 className="font-display text-2xl font-bold uppercase leading-tight tracking-tight">{project.title}</h3>
+        <p className={`mt-2 text-[0.9375rem] leading-relaxed text-secondary ${clamp}`}>{project.description}</p>
         {isLong && (
           <button
             type="button"
@@ -83,14 +83,14 @@ function ProjectCard({ project, position }: { project: Project; position: number
           </button>
         )}
 
-        <ul aria-label="Technologies" className="mt-5 flex flex-wrap gap-2">
+        <ul aria-label="Technologies" className="mt-4 flex flex-wrap gap-1.5">
           {project.tags.map((tag) => (
             <li key={tag} className="border border-border px-2.5 py-1 font-mono text-xs text-secondary">{tag}</li>
           ))}
         </ul>
 
         {(liveUrl || githubUrl) && (
-          <div className="mt-auto flex flex-wrap gap-6 pt-6">
+          <div className="mt-auto flex flex-wrap gap-6 pt-5">
             {liveUrl && <ProjectLink href={liveUrl} label="Live" projectTitle={project.title} />}
             {githubUrl && <ProjectLink href={githubUrl} label="Code" projectTitle={project.title} />}
           </div>
@@ -109,7 +109,7 @@ export function Projects() {
     <section id="projects" className="py-section">
       <div className="shell">
         <SectionHeader index={sectionIndex('projects')} title="Projects" subtitle="Things I've designed, trained and shipped." />
-        <div className="mt-10 grid gap-6 md:mt-12 md:grid-cols-2 md:gap-8">
+        <div className="mx-auto mt-10 grid max-w-5xl gap-6 md:mt-12 md:grid-cols-2">
           {projects.map((project, i) => (
             <Reveal key={project.id} delay={(i % 2) * CARD_STAGGER_MS}>
               <ProjectCard project={project} position={i + 1} />
