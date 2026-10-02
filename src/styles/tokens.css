@@ -1,0 +1,26 @@
+/* Colours are space-separated RGB channels so Tailwind can apply alpha. */
+:root {
+  --color-bg: 9 9 11;
+  --color-base: 13 13 15;
+  --color-surface: 24 24 27;
+  --color-surface-2: 39 39 42;
+  --color-border: 63 63 70;
+  --color-primary: 250 250 250;
+  --color-secondary: 161 161 170;
+  --color-faint: 133 133 143;
+  --color-accent: 223 225 4;
+  --color-accent-dim: 200 202 3;
+  --color-accent-fg: 0 0 0;
+
+  --font-sans: "Space Grotesk Variable", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono Variable", ui-monospace, monospace;
+
+  --space-section: clamp(5rem, 3rem + 8vw, 10rem);
+  --space-gutter: clamp(1.25rem, 0.5rem + 3vw, 2.5rem);
+  --header-height: 4.5rem;
+
+  --duration-fast: 150ms;
+  --duration-normal: 300ms;
+  --duration-reveal: 700ms;
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}

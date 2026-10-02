@@ -1,16 +1,31 @@
-# React + Vite
+# wathsara.me
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Personal portfolio. Vite, React 19, TypeScript and Tailwind, deployed to GitHub Pages.
 
-Currently, two official plugins are available:
+## Commands
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+| Command | What it does |
+|---|---|
+| `npm run dev` | Local dev server |
+| `npm run build` | Production build into `dist/` |
+| `npm run lint` | Oxlint |
+| `npm run typecheck` | TypeScript, no emit |
+| `npm test` | Unit and component tests (Vitest) |
+| `npm run test:e2e` | Browser smoke tests (Playwright); run `npm run build` first |
 
-## React Compiler
+## Editing content
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+All content lives in `src/data/defaults.json`. Edit it directly, or open `/admin` on the site:
+changes save as a draft in your browser, and with a fine-grained GitHub token
+(Contents: read and write on this repo) "Save & deploy" commits the file to `main`.
 
-## Expanding the Oxlint configuration
+## Layout
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+- `src/styles/tokens.css` holds every colour, font, spacing and motion value.
+- `src/lib/sections.ts` is the single list of page sections used by the nav and footer.
+- `src/components/sections/` has one file per page section.
+- `src/pages/admin/` is the content editor, loaded only on `/admin`.
+
+## Deploying
+
+Pushing to `main` runs lint, type check, tests and the build, then publishes `dist/` to the `gh-pages` branch.

@@ -1,0 +1,210 @@
+{
+  "meta": {
+    "name": "Wathsara Kalhara",
+    "title": "Data Scientist & ML Engineer",
+    "roles": [
+      "Data Scientist",
+      "ML Engineer",
+      "AI Researcher",
+      "Deep Learning Practitioner"
+    ],
+    "tagline": "I build intelligent systems that turn complex data into decisions that matter.",
+    "email": "wathsarakalharas@gmail.com",
+    "location": "",
+    "availability": "Open to work",
+    "avatar": "/about.webp",
+    "resumeUrl": "",
+    "socials": {
+      "github": "https://github.com/wathsara02",
+      "linkedin": "https://linkedin.com/in/wathsara",
+      "twitter": "",
+      "kaggle": ""
+    }
+  },
+  "stats": [
+    {
+      "value": "2M",
+      "label": "RL training episodes"
+    },
+    {
+      "value": "~59%",
+      "label": "Win rate vs. random baseline"
+    },
+    {
+      "value": "3",
+      "label": "Projects built end to end"
+    }
+  ],
+  "about": {
+    "bio": "I'm a Data Scientist and ML Engineer building end-to-end machine learning systems, from exploratory analysis and model development to deployment. I specialize in Reinforcement Learning and computer vision, with a strong focus on making models that are not just accurate, but interpretable, scalable, and maintainable.\n\nI care deeply about the full lifecycle: understanding the problem, cleaning the data, shipping the model, and measuring real-world impact."
+  },
+  "skills": [
+    {
+      "category": "Languages",
+      "items": [
+        "Python",
+        "R",
+        "SQL"
+      ]
+    },
+    {
+      "category": "ML / Deep Learning",
+      "items": [
+        "PyTorch",
+        "TensorFlow",
+        "Keras",
+        "scikit-learn",
+        "XGBoost",
+        "HuggingFace Transformers"
+      ]
+    },
+    {
+      "category": "MLOps & Infra",
+      "items": [
+        "MLflow",
+        "Docker",
+        "Kubernetes",
+        "Airflow",
+        "Prefect",
+        "FastAPI",
+        "Ray"
+      ]
+    },
+    {
+      "category": "Cloud",
+      "items": [
+        "AWS SageMaker",
+        "GCP Vertex AI",
+        "Azure ML",
+        "Lambda",
+        "S3",
+        "EC2"
+      ]
+    },
+    {
+      "category": "Data Engineering",
+      "items": [
+        "Pandas",
+        "PySpark",
+        "dbt",
+        "BigQuery",
+        "Snowflake",
+        "Kafka",
+        "Redshift"
+      ]
+    },
+    {
+      "category": "Visualization & BI",
+      "items": [
+        "Matplotlib",
+        "Seaborn",
+        "Plotly",
+        "Streamlit",
+        "Gradio",
+        "Tableau"
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "id": 1,
+      "title": "Intelligent Omi",
+      "description": "Designed and trained a MAPPO (Multi-Agent PPO) reinforcement learning agent from scratch in a custom Gymnasium environment to play Omi, achieving a ~59% win rate against a random baseline over 2 million training episodes (195-dimension observation space, 36-action space). Deployed the trained PyTorch policy behind a FastAPI backend with WebSocket-based real-time inference, paired with a React 19 + TypeScript frontend where users can play live against the AI.",
+      "tags": [
+        "PyTorch",
+        "PettingZoo",
+        "Gymnasium",
+        "MAPPO",
+        "FastAPI",
+        "Websockets",
+        "React",
+        "TypeScript"
+      ],
+      "metrics": [
+        {
+          "value": "~59%",
+          "label": "Win rate vs. random baseline"
+        },
+        {
+          "value": "2M",
+          "label": "Training episodes"
+        },
+        {
+          "value": "195 → 36",
+          "label": "Observation dims → actions"
+        }
+      ],
+      "githubUrl": "https://github.com/wathsara02/PUSL3190",
+      "liveUrl": "https://omilk.vercel.app/",
+      "image": ""
+    },
+    {
+      "id": 2,
+      "title": "Niffler - COC game Automation",
+      "description": "Built a full-stack automation platform for Clash of Clans consisting of a Python/tkinter desktop bot and a React web app. The bot uses OpenCV/Tesseract OCR to read on-screen loot values and Pyautogui to automate attack cycles, troop deployment, and wall upgrades on BlueStacks. A shared Firebase Realtime Database powers device-bound license validation, real-time stat syncing, and a public leaderboard, while the React/Vite website handles downloads, free trials, and Google AdSense monetization.",
+      "tags": [
+        "Python",
+        "Tkinter",
+        "OpenCV",
+        "Tesseract OCR",
+        "React",
+        "Firebase"
+      ],
+      "metrics": [],
+      "githubUrl": "",
+      "liveUrl": "",
+      "image": ""
+    },
+    {
+      "id": 3,
+      "title": "Roomora",
+      "description": "Built the interactive 3D layer of Roomora, an HCI/Computer Graphics coursework project that lets users design room layouts on a 2D grid and seamlessly transition into a real-time, WebGL-rendered 3D space. Implemented direct in-scene object manipulation (drag-and-drop repositioning via TransformControls), procedural furniture rendering, and smart wall culling using React Three Fiber, with Zustand managing state sync between the 2D and 3D views.",
+      "tags": [
+        "React",
+        "TypeScript",
+        "Three.js",
+        "Zustand",
+        "TailwindCSS"
+      ],
+      "metrics": [],
+      "githubUrl": "https://github.com/wathsara02/Roomora",
+      "liveUrl": "https://roomora-kappa.vercel.app/pre-made-rooms",
+      "image": ""
+    }
+  ],
+  "experience": [
+    {
+      "id": 1,
+      "role": "Analyst Programmer",
+      "company": "Lanka Electricity Company",
+      "period": "March 2026 — Present",
+      "location": "Kollupitiya, Colombo 03",
+      "description": "Contributing to web application development while assisting the Systems Analyst team with SQL/Python scripting, query optimization, and process automation.",
+      "highlights": [
+        "Developed Process Cost management system"
+      ]
+    }
+  ],
+  "education": [
+    {
+      "id": 1,
+      "degree": "BSc (Hons) in Data Science",
+      "institution": "University of Plymouth, UK",
+      "period": "2023 — 2026",
+      "location": "",
+      "description": "Coursework covered statistical modelling, machine learning, data mining, database management, and big data analytics, with a final year research project focused on Reinforcement Learning."
+    },
+    {
+      "id": 2,
+      "degree": "GCE A/L",
+      "institution": "Dharmapala Vidyalaya",
+      "period": "2019 — 2022",
+      "location": "Pannipitiya",
+      "description": "Physical Science Stream\n3-s Passes"
+    }
+  ],
+  "contact": {
+    "heading": "Let's build something intelligent.",
+    "subtext": "Open to Data scientist, ML Engineering, Loop Engineering Roles. Response time: under 24 hours."
+  }
+}

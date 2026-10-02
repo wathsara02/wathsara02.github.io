@@ -1,8 +1,9 @@
-name: Deploy to GitHub Pages
+name: Check and deploy
 
 on:
   push:
     branches: [main]
+  pull_request:
 
 permissions:
   contents: write
@@ -15,14 +16,25 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: npm
 
       - run: npm ci
 
+      - run: npm run lint
+
+      - run: npm run typecheck
+
+      - run: npm test
+
       - run: npm run build
 
+      - run: npx playwright install --with-deps chromium
+
+      - run: npm run test:e2e
+
       - name: Deploy to gh-pages
+        if: github.event_name == 'push'
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}

@@ -1,0 +1,102 @@
+@import "./tokens.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: var(--header-height);
+    -webkit-font-smoothing: antialiased;
+  }
+  body {
+    background-color: rgb(var(--color-bg));
+    color: rgb(var(--color-primary));
+    font-family: var(--font-sans);
+    font-size: 1.0625rem;
+    overflow-x: hidden;
+  }
+
+  :focus-visible {
+    outline: 2px solid rgb(var(--color-accent));
+    outline-offset: 3px;
+  }
+
+  ::selection { background: rgb(var(--color-accent)); color: rgb(var(--color-accent-fg)); }
+
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: rgb(var(--color-bg)); }
+  ::-webkit-scrollbar-thumb { background: rgb(var(--color-surface-2)); }
+  ::-webkit-scrollbar-thumb:hover { background: rgb(var(--color-accent)); }
+}
+
+@layer components {
+  .shell {
+    width: 100%;
+    max-width: 80rem;
+    margin-inline: auto;
+    padding-inline: var(--space-gutter);
+  }
+
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+  }
+
+  /* Plotting-paper texture behind the hero. */
+  .plot-grid {
+    background-image:
+      linear-gradient(rgb(var(--color-border) / 0.35) 1px, transparent 1px),
+      linear-gradient(90deg, rgb(var(--color-border) / 0.35) 1px, transparent 1px);
+    background-size: 4rem 4rem;
+    mask-image: linear-gradient(to bottom, black 35%, transparent 95%);
+  }
+
+  /* Accent floods in from the left on hover; children sit above via .fill-content. */
+  .fill-hover { position: relative; isolation: isolate; overflow: hidden; }
+  .fill-hover::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: rgb(var(--color-accent));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform var(--duration-normal) var(--ease-out-expo);
+  }
+  .fill-hover:hover::before,
+  .fill-hover:focus-visible::before { transform: scaleX(1); }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(1.5rem);
+    transition:
+      opacity var(--duration-reveal) var(--ease-out-expo) var(--reveal-delay, 0ms),
+      transform var(--duration-reveal) var(--ease-out-expo) var(--reveal-delay, 0ms);
+  }
+  .reveal[data-revealed="true"] { opacity: 1; transform: none; }
+
+  .rise { animation: rise var(--duration-reveal) var(--ease-out-expo) var(--rise-delay, 0ms) both; }
+  .shake { animation: shake 400ms var(--ease-out-expo); }
+}
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(2rem); }
+  to   { opacity: 1; transform: none; }
+}
+
+@keyframes shake {
+  20%, 60% { transform: translateX(-8px); }
+  40%, 80% { transform: translateX(8px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .rise, .shake { animation: none; }
+  .fill-hover::before { transition: none; }
+  *, *::before, *::after { transition-duration: 0.01ms !important; }
+}
