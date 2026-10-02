@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { ArrowUpRight } from 'lucide-react'
 import { Reveal } from '@/components/ui/Reveal'
 import { SectionHeader } from '@/components/ui/SectionHeader'
@@ -5,6 +6,9 @@ import { usePortfolioData } from '@/hooks/usePortfolioData'
 import { sectionIndex } from '@/lib/sections'
 import { safeUrl } from '@/lib/url'
 import type { Project } from '@/types/portfolio'
+
+// Descriptions longer than this are clamped to three lines behind a toggle.
+const LONG_DESCRIPTION_CHARS = 220
 
 function ProjectLink({ href, label, projectTitle }: { href: string; label: string; projectTitle: string }) {
   return (
@@ -47,28 +51,42 @@ function ProjectRow({ project, position }: { project: Project; position: number 
   const liveUrl = safeUrl(project.liveUrl)
   const githubUrl = safeUrl(project.githubUrl)
   const hasVisual = !!safeUrl(project.image) || project.metrics.length > 0
+  const [isExpanded, setIsExpanded] = useState(false)
+  const isLong = project.description.length > LONG_DESCRIPTION_CHARS
+  const clamp = isLong && !isExpanded ? 'line-clamp-3' : ''
 
   return (
     <Reveal>
-      <article className="group relative grid gap-6 border-b-2 border-border py-10 md:grid-cols-12 md:gap-8 md:py-14">
+      <article className="group relative grid gap-6 border-b-2 border-border py-8 md:grid-cols-12 md:gap-8 md:py-10">
         <span aria-hidden="true" className="absolute -left-gutter top-0 h-full w-1 origin-top scale-y-0 bg-accent transition-transform duration-300 ease-out-expo group-hover:scale-y-100" />
 
         <p aria-hidden="true" className="font-mono text-sm tracking-widest text-faint transition-colors group-hover:text-accent md:col-span-1">
           {String(position).padStart(2, '0')}
         </p>
 
-        <div className={hasVisual ? 'md:col-span-6' : 'md:col-span-11'}>
+        <div className={hasVisual ? 'md:col-span-7' : 'md:col-span-11'}>
           <h3 className="font-display text-title font-bold uppercase">{project.title}</h3>
-          <p className="mt-4 max-w-3xl leading-relaxed text-secondary">{project.description}</p>
+          <p className={`mt-3 max-w-3xl leading-relaxed text-secondary ${clamp}`}>{project.description}</p>
+          {isLong && (
+            <button
+              type="button"
+              aria-expanded={isExpanded}
+              onClick={() => setIsExpanded((expanded) => !expanded)}
+              className="mt-2 font-mono text-xs uppercase tracking-widest text-accent hover:underline"
+            >
+              {isExpanded ? 'Show less' : 'Read more'}
+              <span className="sr-only"> about {project.title}</span>
+            </button>
+          )}
 
-          <ul aria-label="Technologies" className="mt-6 flex flex-wrap gap-2">
+          <ul aria-label="Technologies" className="mt-5 flex flex-wrap gap-2">
             {project.tags.map((tag) => (
               <li key={tag} className="border border-border px-2.5 py-1 font-mono text-xs text-secondary">{tag}</li>
             ))}
           </ul>
 
           {(liveUrl || githubUrl) && (
-            <div className="mt-8 flex flex-wrap gap-6">
+            <div className="mt-6 flex flex-wrap gap-6">
               {liveUrl && <ProjectLink href={liveUrl} label="Live" projectTitle={project.title} />}
               {githubUrl && <ProjectLink href={githubUrl} label="Code" projectTitle={project.title} />}
             </div>
@@ -76,7 +94,7 @@ function ProjectRow({ project, position }: { project: Project; position: number 
         </div>
 
         {hasVisual && (
-          <div className="md:col-span-5">
+          <div className="md:col-span-4">
             <ProjectVisual project={project} />
           </div>
         )}
