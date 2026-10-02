@@ -1,29 +1,32 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="en">
   <head>
+    <meta http-equiv="Content-Security-Policy" content="default-src &#39;self&#39;; script-src &#39;self&#39;; style-src &#39;self&#39; &#39;unsafe-inline&#39;; img-src &#39;self&#39; data: https:; font-src &#39;self&#39;; connect-src &#39;self&#39; https://api.github.com; object-src &#39;none&#39;; base-uri &#39;self&#39;">
+
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#09090B" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
     <!-- Primary SEO -->
-    <title>Wathsara Kalhara — Data Scientist</title>
+    <title>Wathsara Kalhara — Data Scientist & ML Engineer</title>
     <meta name="description" content="Portfolio of Wathsara Kalhara — Data scientist building models, tools, and experiences. Open to work." />
     <meta name="author" content="Wathsara Kalhara" />
-    <meta name="keywords" content="Wathsara Kalhara, data science, ai engineer, machine learning, web developer, portfolio, wathsara.me" />
     <link rel="canonical" href="https://wathsara.me/" />
 
     <!-- Open Graph (LinkedIn, Facebook, WhatsApp previews) -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://wathsara.me/" />
-    <meta property="og:title" content="Wathsara Kalhara — Data Scientist" />
+    <meta property="og:title" content="Wathsara Kalhara — Data Scientist & ML Engineer" />
     <meta property="og:description" content="Portfolio of Wathsara Kalhara — Data scientist building models, tools, and experiences. Open to work." />
     <meta property="og:image" content="https://wathsara.me/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
     <meta property="og:site_name" content="Wathsara Kalhara" />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:url" content="https://wathsara.me/" />
-    <meta name="twitter:title" content="Wathsara Kalhara — Data Scientist" />
+    <meta name="twitter:title" content="Wathsara Kalhara — Data Scientist & ML Engineer" />
     <meta name="twitter:description" content="Portfolio of Wathsara Kalhara — Data scientist building models, tools, and experiences. Open to work." />
     <meta name="twitter:image" content="https://wathsara.me/og-image.png" />
 
@@ -43,23 +46,10 @@
     }
     </script>
 
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-
-    <!-- SPA routing redirect handler -->
-    <script>
-      (function() {
-        var p = window.location.search.match(/[?&]p=([^&]+)/);
-        if (p) {
-          window.history.replaceState(null, null, decodeURIComponent(p[1]) + window.location.search.replace(/[?&]p=[^&]+/, '').replace(/^&/, '?') + window.location.hash);
-        }
-      })();
-    </script>
-    <script type="module" crossorigin src="/assets/index-DHsvIYcS.js"></script>
-    <link rel="modulepreload" crossorigin href="/assets/usePortfolioData-DFSkZhr2.js">
-    <link rel="stylesheet" crossorigin href="/assets/index-C2Q95Ady.css">
+    <!-- Restores the path that 404.html stashed in ?p= (GitHub Pages SPA routing) -->
+    <script src="/spa-redirect.js"></script>
+    <script type="module" crossorigin src="/assets/index-DnwzutBv.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-Dp7kVBVp.css">
   </head>
   <body>
     <div id="root"></div>
